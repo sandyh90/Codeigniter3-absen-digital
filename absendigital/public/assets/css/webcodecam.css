@@ -1,0 +1,57 @@
+#webcodecam-canvas, #scanned-img {
+    background-color: #2d2d2d;
+}
+
+.well {
+    position: relative;
+    display: inline-block;
+}
+pre {
+    border: 0;
+    border-radius: 0;
+    background-color: #333;
+    margin: 0;
+    line-height: 125%;
+    color: whitesmoke;
+}
+
+.scanner-laser {
+    position: absolute;
+    margin: 40px;
+    height: 30px;
+    width: 30px;
+    opacity: 0.5;
+}
+
+.laser-leftTop {
+    top: 0;
+    left: 0;
+    border-top: solid red 5px;
+    border-left: solid red 5px;
+}
+
+.laser-leftBottom {
+    bottom: 0;
+    left: 0;
+    border-bottom: solid red 5px;
+    border-left: solid red 5px;
+}
+
+.laser-rightTop {
+    top: 0;
+    right: 0;
+    border-top: solid red 5px;
+    border-right: solid red 5px;
+}
+
+.laser-rightBottom {
+    bottom: 0;
+    right: 0;
+    border-bottom: solid red 5px;
+    border-right: solid red 5px;
+    JS
+}
+
+#webcodecam-canvas {
+    background-color: #272822;
+}
