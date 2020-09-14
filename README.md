@@ -12,6 +12,7 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 > - Informasi Pada Saat Absen
 > - Sistem Login
 > - Export Absen (Support PDF & Excel)
+> - Absensi Dengan Maps (Beta)
 
 ## Server Requirement
 
@@ -42,3 +43,7 @@ dan keterangan upload
 ### 9-13-2020
 - Export dengan metode excel
 - Mengubah bahasa pada datepicker bagian bulan
+
+### 9-15-2020
+- Absensi dengan mengunakan fitur lokasi
+- Perbaikan beberapa bug yang telah ditemukan
