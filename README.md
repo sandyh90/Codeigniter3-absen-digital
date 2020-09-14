@@ -26,7 +26,7 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 > - Password: 12345678
 
 ## Setting Database
-Untuk menyesuaikan pengaturan database anda silakan dibuka
+Untuk menyesuaikan pengaturan pada database anda silakan dibuka:
 > absendigital/application/config/database.php
 
 Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan database anda:
