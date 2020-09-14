@@ -34,7 +34,7 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 'hostname' => 'localhost', => Ubah kolom hostname ini dengan url hostname database anda
 	'username' => 'root', => Ubah kolom username ini jika berbeda
 	'password' => '', => Ubah kolom password ini jika database anda mempunyai password
-	'database' => 'absensi_online', => default (ubah jika ada kesamaan nama pada nama database ini dengan yang hasil import silakan diubah)
+	'database' => 'absensi_online', => default (jika ada kesamaan nama pada nama database ini dengan yang hasil import silakan diubah)
 ```
 
 ## Demo / Screenshot
