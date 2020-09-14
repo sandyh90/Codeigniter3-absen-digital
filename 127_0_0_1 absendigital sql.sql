@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Sep 2020 pada 15.53
+-- Waktu pembuatan: 14 Sep 2020 pada 16.54
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.8
 
@@ -35,7 +35,8 @@ CREATE TABLE `db_absensi` (
   `tgl_absen` varchar(125) NOT NULL,
   `jam_masuk` varchar(13) NOT NULL,
   `jam_pulang` varchar(13) NOT NULL,
-  `status_pegawai` int(1) NOT NULL
+  `status_pegawai` int(1) NOT NULL,
+  `maps_absen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -71,15 +72,16 @@ CREATE TABLE `db_setting` (
   `timezone` varchar(35) NOT NULL,
   `absen_mulai` varchar(13) NOT NULL,
   `absen_mulai_to` varchar(13) NOT NULL,
-  `absen_pulang` varchar(13) NOT NULL
+  `absen_pulang` varchar(13) NOT NULL,
+  `maps_use` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `db_setting`
 --
 
-INSERT INTO `db_setting` (`status_setting`, `nama_instansi`, `jumbotron_lead_set`, `nama_app_absensi`, `logo_instansi`, `timezone`, `absen_mulai`, `absen_mulai_to`, `absen_pulang`) VALUES
-(1, '[Ubah Nama Instansi]', '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]', 'Absensi Online', 'default-logo.png', 'Asia/Jakarta', '06:00:00', '11:00:00', '16:00:00');
+INSERT INTO `db_setting` (`status_setting`, `nama_instansi`, `jumbotron_lead_set`, `nama_app_absensi`, `logo_instansi`, `timezone`, `absen_mulai`, `absen_mulai_to`, `absen_pulang`, `maps_use`) VALUES
+(1, '[Ubah Nama Instansi]', '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]', 'Absensi Online', 'default-logo.png', 'Asia/Jakarta', '06:00:00', '11:00:00', '16:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_pegawai`, `nama_lengkap`, `username`, `password`, `role_id`, `umur`, `image`, `qr_code_image`, `kode_pegawai`, `instansi`, `jabatan`, `npwp`, `tgl_lahir`, `tempat_lahir`, `jenis_kelamin`, `bagian_shift`, `is_active`, `qr_code_use`, `is_online`, `last_login`, `date_created`) VALUES
-(12, 'Admin', 'admin', '$2y$10$sZVyS3G6aVjMRoLq0JhuZuiAat.QjOOtbcyohRih3IxtQaEvJG4Eq', 1, 18, 'default.png', 'no-qrcode.png', '293571010111', '[Ubah Nama Instansi]', 'Test', 'Tidak Ada', '2020-09-08', 'Test', 'Laki - Laki', 1, 1, 0, 1, 1599925414, 1584698797);
+(12, 'Admin', 'admin', '$2y$10$sZVyS3G6aVjMRoLq0JhuZuiAat.QjOOtbcyohRih3IxtQaEvJG4Eq', 1, 18, 'default.png', 'no-qrcode.png', '293571010111', '[Ubah Nama Instansi]', 'Test', 'Tidak Ada', '2020-09-08', 'Test', 'Laki - Laki', 1, 1, 0, 1, 1600095165, 1584698797);
 
 --
 -- Indexes for dumped tables

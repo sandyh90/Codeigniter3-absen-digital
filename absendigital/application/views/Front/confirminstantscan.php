@@ -1,5 +1,17 @@
 <div class="container auth-card">
     <div class="row justify-content-center">
+        <?php if ($dataapp['maps_use'] == 1) : ?>
+            <div class="col-lg-6">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light">Maps Absen</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id='maps-absen' style='width: 100%; height:250px;'></div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="col-lg-6 ">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-header">
@@ -7,6 +19,7 @@
                 </div>
                 <div class="card-body">
                     <div id="infoabsensi"></div>
+                    <div id="location-maps" style="display: none;"></div>
                     <div class="text-center" id="scandateclock">
                         <h3 id="clocknow"></h3>
                         <h3 id="datenow"></h3>

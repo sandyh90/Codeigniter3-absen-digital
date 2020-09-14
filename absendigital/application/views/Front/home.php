@@ -65,6 +65,11 @@
                 <div class="card-header text-center"><span class="fas fa-clock mr-1"></span>Absensi</div>
                 <div class="card-body text-center">
                     <div id="infoabsensi"></div>
+                    <?php if ($dataapp['maps_use'] == 1) : ?>
+                        <div id='maps-absen' style='width: 100%; height:250px;'></div>
+                        <hr>
+                    <?php endif; ?>
+                    <div id="location-maps" style="display: none;"></div>
                     <div id="date-and-clock">
                         <h3 id="clocknow"></h3>
                         <h3 id="datenow"></h3>

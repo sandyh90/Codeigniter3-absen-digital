@@ -234,7 +234,10 @@ class Ajax extends CI_Controller
         if ($typesend == 'delabs') {
             $this->M_Front->crudabs($typesend);
         } elseif ($typesend == 'viewabs') {
-            $data['dataabsensi'] =  $this->db->get_where('db_absensi', ['id_absen' => $this->input->post('absen_id')])->row_array();
+            $data = [
+                'dataabsensi' => $this->db->get_where('db_absensi', ['id_absen' => $this->input->post('absen_id')])->row_array(),
+                'dataapp' => $this->appsetting
+            ];
             $html = $this->load->view('layout/dataabsensi/viewabsensi', $data);
             $reponse = [
                 'html' => $html,

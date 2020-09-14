@@ -58,7 +58,8 @@ class M_Front extends CI_Model
                     'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true)),
                     'id_absen' => random_string('numeric', 5),
                     'tgl_absen' => $today,
-                    'status_pegawai' => 1
+                    'status_pegawai' => 1,
+                    'maps_absen' => htmlspecialchars($this->input->post('maps_absen', true))
                 ];
                 $this->db->insert('db_absensi', $data);
             }
@@ -75,7 +76,8 @@ class M_Front extends CI_Model
                     'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true)),
                     'id_absen' => random_string('numeric', 5),
                     'tgl_absen' => $today,
-                    'status_pegawai' => 2
+                    'status_pegawai' => 2,
+                    'maps_absen' => htmlspecialchars($this->input->post('maps_absen', true))
                 ];
                 $this->db->insert('db_absensi', $data);
             }
@@ -85,7 +87,8 @@ class M_Front extends CI_Model
                 'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true)),
                 'id_absen' => random_string('numeric', 5),
                 'tgl_absen' => $today,
-                'status_pegawai' => 2
+                'status_pegawai' => 2,
+                'maps_absen' => htmlspecialchars($this->input->post('maps_absen', true))
             ];
             $this->db->insert('db_absensi', $data);
         }

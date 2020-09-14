@@ -21,7 +21,7 @@ class Absen extends CI_Controller
         ];
         $this->load->view('layout/header', $data);
         $this->load->view('front/instantscan', $data);
-        $this->load->view('layout/footerabsen', $data);
+        $this->load->view('layout/footer', $data);
     }
 
     public function confirmabsen()

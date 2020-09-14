@@ -4,7 +4,9 @@
     <footer class="py-4 bg-light mt-auto">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; <?= date("Y"); ?><a href="<?= base_url(); ?>" class="ml-1"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></a></div>
+                <div class="text-muted">Copyright &copy; <?= date("Y"); ?><a href="<?= base_url(); ?>" class="ml-1"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></a>
+                    <div class="d-inline">Powered By<a href="https://github.com/sandyh90" class="ml-1">Pickedianz</a></div>
+                </div>
                 <div class="text-muted">
                     Page rendered in <strong>{elapsed_time}</strong> seconds.
                 </div>
@@ -16,15 +18,109 @@
 <script src="<?= base_url('assets'); ?>/vendor/jquery/jquery.min.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('assets'); ?>/js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/webcam/webcodecamjquery.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/webcam/webcodecamjs.js"></script>
-<script src="<?= base_url('assets'); ?>/js/qrcodelib.js"></script>
-<script src="<?= base_url('assets'); ?>/js/DecoderWorker.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/sweetalert2/sweetalert2.all.min.js"></script>
+<script>
+    <?php if ($dataapp['maps_use'] == 1) : ?>
+        if (document.getElementById("maps-absen")) {
+            window.onload = function() {
+                var popup = L.popup();
+                var geolocationMap = L.map("maps-absen", {
+                    center: [40.731701, -73.993411],
+                    zoom: 15,
+                });
+
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                }).addTo(geolocationMap);
+
+                function geolocationErrorOccurred(geolocationSupported, popup, latLng) {
+                    popup.setLatLng(latLng);
+                    popup.setContent(
+                        geolocationSupported ?
+                        "<b>Error:</b> The Geolocation service failed." :
+                        "<b>Error:</b> This browser doesn't support geolocation."
+                    );
+                    popup.openOn(geolocationMap);
+                }
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            var latLng = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+
+                            var marker = L.marker(latLng).addTo(geolocationMap);
+                            geolocationMap.setView(latLng);
+                            document.getElementById("location-maps").innerHTML = position.coords.latitude + ", " + position.coords.longitude;
+                        },
+                        function() {
+                            geolocationErrorOccurred(true, popup, geolocationMap.getCenter());
+                        }
+                    );
+                } else {
+                    //No browser support geolocation service
+                    geolocationErrorOccurred(false, popup, geolocationMap.getCenter());
+                }
+            };
+        }
+    <?php else : ?>
+        if (document.getElementById("location-maps")) {
+            document.getElementById("location-maps").innerHTML = 'No Location';
+        }
+    <?php endif; ?>
+
+    $("#btn-absensi").click(function(e) {
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var nama_pegawai = document.getElementById("nama_pegawai").innerHTML;
+        var jam_absen = document.getElementById("clocknow").innerHTML
+
+        $.ajax({
+            type: "POST",
+            url: '<?= base_url('ajax/absenajax'); ?>',
+            data: {
+                nama_pegawai: nama_pegawai,
+                jam_absen: jam_absen
+            }, // serializes the form's elements.
+            dataType: 'json',
+            beforeSend: function() {
+                swal.fire({
+                    imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
+                    title: "Proses Absensi",
+                    text: "Please wait",
+                    showConfirmButton: false,
+                    allowOutsideClick: false
+                });
+            },
+            success: function(response) {
+                if (response.success == true) {
+                    swal.fire({
+                        icon: 'success',
+                        title: 'Absen Sukses',
+                        text: 'Anda Telah Absen!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    location.replace("<?= base_url('instantabsen'); ?>");
+                } else {
+                    $("#infoabsensi").html(response.msgabsen).show().delay(3000).fadeOut();
+                    swal.close()
+                }
+            },
+            error: function() {
+                swal.fire("Absen Gagal", "Ada Kesalahan Saat Absen!", "error");
+            }
+        });
+
+
+    });
+</script>
 <script>
     $(document).ready(function() {
         $("#show_hide_password button").on('click', function(event) {
@@ -77,87 +173,6 @@
     if (document.getElementById("scandateclock")) {
         currentTime(); /* calling currentTime() function to initiate the process */
     }
-</script>
-<script>
-    $("#btn-absensi").click(function(e) {
-
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-
-        var nama_pegawai = document.getElementById("nama_pegawai").innerHTML;
-        var jam_absen = document.getElementById("clocknow").innerHTML
-
-        $.ajax({
-            type: "POST",
-            url: '<?= base_url('ajax/absenajax'); ?>',
-            data: {
-                nama_pegawai: nama_pegawai,
-                jam_absen: jam_absen
-            }, // serializes the form's elements.
-            dataType: 'json',
-            beforeSend: function() {
-                swal.fire({
-                    imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                    title: "Proses Absensi",
-                    text: "Please wait",
-                    showConfirmButton: false,
-                    allowOutsideClick: false
-                });
-            },
-            success: function(response) {
-                if (response.success == true) {
-                    swal.fire({
-                        icon: 'success',
-                        title: 'Absen Sukses',
-                        text: 'Anda Telah Absen!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    location.replace("<?= base_url('instantabsen'); ?>");
-                } else {
-                    $("#infoabsensi").html(response.msgabsen).show().delay(3000).fadeOut();
-                    swal.close()
-                }
-            },
-            error: function() {
-                swal.fire("Absen Gagal", "Ada Kesalahan Saat Absen!", "error");
-            }
-        });
-
-
-    });
-</script>
-<script>
-    var arg = {
-        resultFunction: function(result) {
-            decoder.stop();
-            var redirect = "<?= base_url('confirmabsen'); ?>";
-            $.redirectPost(redirect, {
-                id_pegawai: result.code
-            });
-        }
-    };
-
-    var decoder = $("#webcodecam-canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery;
-    /* Select environment camera if available */
-    decoder.buildSelectMenu('select');
-    decoder.play();
-    /*  Without visible select menu
-        decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
-    */
-    $('select').on('change', function() {
-        decoder.stop().play();
-    });
-
-    // jquery extend function
-    $.extend({
-        redirectPost: function(location, args) {
-            var form = '';
-            $.each(args, function(key, value) {
-                form += '<input type="hidden" name="' + key + '" value="' + value + '">';
-            });
-            $('<form action="' + location + '" method="POST">' + form + '</form>').appendTo('body').submit();
-        }
-    });
 </script>
 </body>
 

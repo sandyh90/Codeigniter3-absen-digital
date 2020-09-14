@@ -14,3 +14,23 @@
         </dl>
     </div>
 </div>
+
+<?php if ($dataapp['maps_use'] == 1) : ?>
+    <h4 class="my-2"><span class="fas fa-map-marked-alt mr-1"></span>Maps</h4>
+    <?php if (!empty($dataabsensi['maps_absen']) && $dataabsensi['maps_absen'] != 'No Location') : ?>
+        <div id='maps-view-absen' style='width: 100%; height:250px;'></div>
+        <script>
+            if (document.getElementById("maps-view-absen")) {
+                var map = L.map('maps-view-absen').setView([<?= $dataabsensi['maps_absen']; ?>], 15);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                L.marker([<?= $dataabsensi['maps_absen']; ?>]).addTo(map);
+            }
+        </script>
+    <?php else : ?>
+        <div class="my-2 text-center">Lokasi Tidak Ditemukan</div>
+    <?php endif; ?>
+<?php endif; ?>

@@ -22,7 +22,8 @@ class M_Settings extends CI_Model
                 'timezone' => 'Asia/Jakarta',
                 'absen_mulai' => '06:00:00',
                 'absen_mulai_to' => '11:00:00',
-                'absen_pulang' => '16:00:00'
+                'absen_pulang' => '16:00:00',
+                'maps_use' => 0
             ];
             $old_image = $this->appsetting['logo_instansi'];
             if ($old_image != 'default-logo.png') {
@@ -41,7 +42,8 @@ class M_Settings extends CI_Model
                 'timezone' => 'Asia/Jakarta',
                 'absen_mulai' => '06:00:00',
                 'absen_mulai_to' => '11:00:00',
-                'absen_pulang' => '16:00:00'
+                'absen_pulang' => '16:00:00',
+                'maps_use' => 0
             ];
             $this->db->insert('db_setting', $data);
         }
@@ -56,7 +58,8 @@ class M_Settings extends CI_Model
             'timezone' =>  htmlspecialchars($this->input->post('timezone_absen')),
             'absen_mulai' =>  htmlspecialchars($this->input->post('absen_mulai')),
             'absen_mulai_to' =>  htmlspecialchars($this->input->post('absen_sampai')),
-            'absen_pulang' =>  htmlspecialchars($this->input->post('absen_pulang_sampai'))
+            'absen_pulang' =>  htmlspecialchars($this->input->post('absen_pulang_sampai')),
+            'maps_use' =>  htmlspecialchars($this->input->post('lokasi_absensi'))
         ];
 
         $upload_image = $_FILES['logo_instansi']['name'];

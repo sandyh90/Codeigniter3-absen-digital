@@ -78,6 +78,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="lokasi_absensi" class="col-sm-4 col-form-label">Absensi Dengan Lokasi</label>
+                            <div class="col-sm-8">
+                                <div class="custom-control custom-checkbox"><?= form_checkbox('lokasi_absensi', 1, ($dataapp['maps_use'] == 1) ? true : false, 'id="lokasi_absensi" class="custom-control-input"'); ?><label class="custom-control-label" for="lokasi_absensi">Menggunakan Maps</label></div>
+                                <div class="small">(Fitur lokasi ini perlu akses jaringan internet)</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-2">Logo Instansi</div>
                             <div class="col-sm-10">
                                 <div class="row">

@@ -128,6 +128,7 @@ class Docs extends CI_Controller
                 $sheet->setCellValue('D5', 'Jam Datang');
                 $sheet->setCellValue('E5', 'Jam Pulang');
                 $sheet->setCellValue('F5', 'Status Kehadiran');
+                $sheet->setCellValue('G5', 'Titik Lokasi Maps');
                 $sheet->getStyle('A5:F5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $dataabsensi = $querydata;
                 $no = 1;
@@ -139,6 +140,7 @@ class Docs extends CI_Controller
                     $sheet->setCellValue('D' . $rowx, $rowabsen->jam_masuk);
                     $sheet->setCellValue('E' . $rowx, (empty($rowabsen->jam_pulang)) ? 'Belum Absen Pulang' : $rowabsen->jam_pulang);
                     $sheet->setCellValue('F' . $rowx, ($rowabsen->status_pegawai == 1) ? 'Sudah Absen' : (($rowabsen->status_pegawai == 2) ? 'Absen Terlambat' : 'Belum Absen'));
+                    $sheet->setCellValue('G' . $rowx, (empty($rowabsen->maps_absen)) ? 'Lokasi Tidak Ditemukan' : (($rowabsen->maps_absen == 'No Location') ? 'Lokasi Tidak Ditemukan' : $rowabsen->maps_absen));
                     $rowx++;
                 }
                 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5);
@@ -147,6 +149,7 @@ class Docs extends CI_Controller
                 $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(20);
                 $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20);
                 $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+                $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(38);
 
                 $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
                 $filename = "absensipegawai_" . time() . "_bulanan" . "_download";
