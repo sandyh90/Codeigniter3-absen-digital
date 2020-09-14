@@ -26,6 +26,16 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 > - Password: 12345678
 
 ## Setting Database
+Untuk menyesuaikan pengaturan database anda silakan dibuka
+> absendigital/application/config/database.php
+
+Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan database anda:
+```
+'hostname' => 'localhost',
+	'username' => 'root', => Ubah kolom username ini jika berbeda
+	'password' => '', => Ubah kolom password ini jika database anda mempunyai password
+	'database' => 'absensi_online', => default (ubah jika ada kesamaan nama pada nama database ini dengan yang hasil import silakan diubah)
+```
 
 ## Demo / Screenshot
 ![Login Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Login%20Absensi(1).png)
