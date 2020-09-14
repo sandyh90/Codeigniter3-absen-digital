@@ -25,6 +25,8 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 > - Username: admin
 > - Password: 12345678
 
+## Setting Database
+
 ## Demo / Screenshot
 ![Login Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Login%20Absensi(1).png)
 ![Front Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Absensi%20Online.png)
@@ -45,5 +47,5 @@ dan keterangan upload
 - Mengubah bahasa pada datepicker bagian bulan
 
 ### 9-15-2020
-- Absensi dengan mengunakan fitur lokasi
+- Penambahan fitur absensi dengan mengunakan lokasi
 - Perbaikan beberapa bug yang telah ditemukan
