@@ -25,6 +25,18 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 > - Username: admin
 > - Password: 12345678
 
+## Setting Database
+Untuk menyesuaikan pengaturan pada database anda silakan dibuka:
+> absendigital/application/config/database.php
+
+Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan database anda:
+```
+'hostname' => 'localhost', |Ubah kolom hostname ini dengan url hostname database anda
+	'username' => 'root', |Ubah kolom username ini jika berbeda
+	'password' => '', |Ubah kolom password ini jika database anda mempunyai password
+	'database' => 'absensi_online', |default (jika ada kesamaan nama pada nama database ini dengan yang hasil import silakan diubah)
+```
+
 ## Demo / Screenshot
 ![Login Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Login%20Absensi(1).png)
 ![Front Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Absensi%20Online.png)
@@ -45,5 +57,5 @@ dan keterangan upload
 - Mengubah bahasa pada datepicker bagian bulan
 
 ### 9-15-2020
-- Absensi dengan mengunakan fitur lokasi
+- Penambahan fitur absensi dengan mengunakan lokasi
 - Perbaikan beberapa bug yang telah ditemukan
