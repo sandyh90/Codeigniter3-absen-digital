@@ -44,12 +44,13 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 
 ## Alasan Memakai Folder Public
 
-Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk keamanan pada data sistem mungkin ini tidak begitu efektif tetapi ini sangat berguna untuk menghindari hal - hal yang tidak diinginkan mungkin
+Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk keamanan pada data sistem aplikasi ini, mungkin ini tidak begitu efektif tetapi ini sangat berguna untuk menghindari hal - hal yang tidak diinginkan dan juga
 ini bukan cara yang paling akurat menurut saya 
 
 ## Issues
 - Masih terdapat bug pada edit user dibagian show password
 dan keterangan upload
+- Terdapat sedikit bug pada absensi
 
 ## Change Log
 ### 9-13-2020
