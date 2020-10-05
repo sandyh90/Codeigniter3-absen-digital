@@ -48,8 +48,6 @@ Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk
 ini bukan cara yang paling akurat menurut saya 
 
 ## Issues
-- [x] Masih terdapat bug pada edit user dibagian show password
-dan keterangan upload (Done)
 - Terdapat sedikit bug pada absensi
 
 ## Change Log
