@@ -48,8 +48,8 @@ Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk
 ini bukan cara yang paling akurat menurut saya 
 
 ## Issues
-- Masih terdapat bug pada edit user dibagian show password
-dan keterangan upload
+- [x] Masih terdapat bug pada edit user dibagian show password
+dan keterangan upload (Done)
 - Terdapat sedikit bug pada absensi
 
 ## Change Log
@@ -60,3 +60,9 @@ dan keterangan upload
 ### 9-15-2020
 - Penambahan fitur absensi dengan mengunakan lokasi
 - Perbaikan beberapa bug yang telah ditemukan
+
+### 10-05-2020
+- Perbaikan bug pada edit user dibagian show password dan keterangan upload
+- Penambahan aksi pada list absen bagian pegawai
+- Perbaikan pada layout export excel
+- Perbaikan beberapa bug yang telah ditemukan 
