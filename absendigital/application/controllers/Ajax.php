@@ -607,7 +607,10 @@ class Ajax extends CI_Controller
                     $r->nama_pegawai,
                     $r->jam_masuk,
                     $r->jam_pulang,
-                    (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>')
+                    (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>'),
+                    '<div class="btn-group btn-small " style="text-align: right;">
+                    <button class="btn btn-primary detail-absen" data-absen-id="' . $r->id_absen . '" title="Lihat Absensi"><span class="fas fa-fw fa-address-card"></span></button>
+                    </div>'
                 ];
             }
         } elseif ($dataabsen == 'getallmsk') {

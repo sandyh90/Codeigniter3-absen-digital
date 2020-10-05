@@ -116,10 +116,10 @@ class Docs extends CI_Controller
                 $dataapp = $this->get_datasetupapp;
 
                 $sheet->setCellValue('A1', 'Rekap Data Absensi: ' . $dataapp['nama_instansi'] . '');
-                $sheet->mergeCells('A1:F2');
+                $sheet->mergeCells('A1:G2');
                 $sheet->getStyle('A1')->applyFromArray($styleJudul);
                 $sheet->setCellValue('A3', 'Excel was generated on ' . date("Y-m-d H:i:s") . '');
-                $sheet->mergeCells('A3:F3');
+                $sheet->mergeCells('A3:G3');
                 $sheet->getStyle('A3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
                 $sheet->setCellValue('A5', 'No');

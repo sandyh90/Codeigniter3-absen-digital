@@ -15,7 +15,7 @@
 <div class="form-group row">
     <label for="password_pegawai_edit" class="col-sm-4 col-form-label">Password Pegawai</label>
     <div class="col-sm-8">
-        <div class="input-group" id="show_hide_password">
+        <div class="input-group" id="sh_hd_pass">
             <input type="password" class="form-control" id="password_pegawai_edit" name="password_pegawai_edit">
             <div class="input-group-append">
                 <button class="input-group-text" type="button" tabindex="-1"><span class="fas fa-eye-slash" aria-hidden="false"></span></button>
@@ -139,8 +139,8 @@
             </div>
             <div class="col-sm-9">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="foto_pegawai_edit" name="foto_pegawai_edit">
-                    <label class="custom-file-label" for="foto_pegawai_edit">Choose file. Max 2 MB</label>
+                    <input type="file" class="custom-file-input edit-pas-pegawai" id="foto_pegawai_edit" name="foto_pegawai_edit">
+                    <label class="custom-file-label edit-pas-pegawai-label" for="foto_pegawai_edit">Choose file. Max 2 MB</label>
                 </div>
             </div>
         </div>
@@ -151,3 +151,23 @@
     <button type="submit" class="btn btn-primary" id="editpgw-btn"><span class="fas fa-pen mr-1"></span>Edit</button>
 </div>
 </form>
+
+<script>
+    $("#sh_hd_pass button").on('click', function(event) {
+        event.preventDefault();
+        if ($('#sh_hd_pass input').attr("type") == "text") {
+            $('#sh_hd_pass input').attr('type', 'password');
+            $('#sh_hd_pass span').addClass("fa-eye-slash");
+            $('#sh_hd_pass span').removeClass("fa-eye");
+        } else if ($('#sh_hd_pass input').attr("type") == "password") {
+            $('#sh_hd_pass input').attr('type', 'text');
+            $('#sh_hd_pass span').removeClass("fa-eye-slash");
+            $('#sh_hd_pass span').addClass("fa-eye");
+        }
+    });
+
+    $('.edit-pas-pegawai').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.edit-pas-pegawai-label').addClass("selected").html(fileName);
+    });
+</script>

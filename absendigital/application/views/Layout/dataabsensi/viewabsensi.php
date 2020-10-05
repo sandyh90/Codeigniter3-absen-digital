@@ -19,6 +19,7 @@
     <h4 class="my-2"><span class="fas fa-map-marked-alt mr-1"></span>Maps</h4>
     <?php if (!empty($dataabsensi['maps_absen']) && $dataabsensi['maps_absen'] != 'No Location') : ?>
         <div id='maps-view-absen' style='width: 100%; height:250px;'></div>
+        <a class="btn btn-primary my-2" href="http://maps.google.com/maps?q=<?= $dataabsensi['maps_absen']; ?>" target="_blank"><span class="fas fa-fw fa-map-marker-alt mr-1"></span>Lihat Lokasi</a>
         <script>
             if (document.getElementById("maps-view-absen")) {
                 var map = L.map('maps-view-absen').setView([<?= $dataabsensi['maps_absen']; ?>], 15);
