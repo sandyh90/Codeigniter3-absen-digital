@@ -64,3 +64,4 @@ ini bukan cara yang paling akurat menurut saya
 - Penambahan aksi pada list absen bagian pegawai
 - Perbaikan pada layout export excel
 - Perbaikan beberapa bug yang telah ditemukan 
+- Perubahan pada layout halaman setting user
