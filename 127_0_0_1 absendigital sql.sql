@@ -40,13 +40,6 @@ CREATE TABLE `db_absensi` (
   `maps_absen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `db_absensi`
---
-
-INSERT INTO `db_absensi` (`id_absen`, `nama_pegawai`, `tgl_absen`, `jam_masuk`, `jam_pulang`, `status_pegawai`, `keterangan_absen`, `maps_absen`) VALUES
-(5693, 'Admin', 'Sabtu, 21 November 2020', '14 : 57 : 05', '', 2, 'Bekerja Di Rumah / WFH', 'No Location');
-
 -- --------------------------------------------------------
 
 --
