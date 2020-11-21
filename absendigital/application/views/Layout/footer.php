@@ -194,6 +194,7 @@
             var nama_pegawai = document.getElementById("nama_pegawai").innerHTML;
             var jam_absen = document.getElementById("clocknow").innerHTML;
             var maps_absen = document.getElementById("location-maps").innerHTML;
+            var ket_absen = $('#ket_absen').val();
 
             $.ajax({
                 type: "POST",
@@ -201,7 +202,8 @@
                 data: {
                     nama_pegawai: nama_pegawai,
                     jam_absen: jam_absen,
-                    maps_absen: maps_absen
+                    maps_absen: maps_absen,
+                    ket_absen: ket_absen
                 }, // serializes the form's elements.
                 dataType: 'json',
                 beforeSend: function() {

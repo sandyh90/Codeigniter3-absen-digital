@@ -16,6 +16,7 @@
                 <th scope="col">Jam Datang</th>
                 <th scope="col">Jam Pulang</th>
                 <th scope="col">Status Kehadiran</th>
+                <th scope="col">Keterangan Absen</th>
                 <th scope="col">Titik Lokasi Maps</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     <td><?= $absen->jam_masuk; ?></td>
                     <td><?= (empty($absen->jam_pulang)) ? 'Belum Absen Pulang' : $absen->jam_pulang; ?></td>
                     <td><?= ($absen->status_pegawai == 1) ? 'Sudah Absen' : (($absen->status_pegawai == 2) ? 'Absen Terlambat' : 'Belum Absen'); ?></td>
+                    <td><?= $absen->keterangan_absen; ?></td>
                     <td><?= (empty($absen->maps_absen)) ? 'Lokasi Tidak Ditemukan' : (($absen->maps_absen == 'No Location') ? 'Lokasi Tidak Ditemukan' : $absen->maps_absen); ?></td>
                 </tr>
             <?php endforeach; ?>

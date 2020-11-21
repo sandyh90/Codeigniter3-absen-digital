@@ -116,10 +116,10 @@ class Docs extends CI_Controller
                 $dataapp = $this->get_datasetupapp;
 
                 $sheet->setCellValue('A1', 'Rekap Data Absensi: ' . $dataapp['nama_instansi'] . '');
-                $sheet->mergeCells('A1:G2');
+                $sheet->mergeCells('A1:H2');
                 $sheet->getStyle('A1')->applyFromArray($styleJudul);
                 $sheet->setCellValue('A3', 'Excel was generated on ' . date("Y-m-d H:i:s") . '');
-                $sheet->mergeCells('A3:G3');
+                $sheet->mergeCells('A3:H3');
                 $sheet->getStyle('A3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
                 $sheet->setCellValue('A5', 'No');
@@ -128,7 +128,8 @@ class Docs extends CI_Controller
                 $sheet->setCellValue('D5', 'Jam Datang');
                 $sheet->setCellValue('E5', 'Jam Pulang');
                 $sheet->setCellValue('F5', 'Status Kehadiran');
-                $sheet->setCellValue('G5', 'Titik Lokasi Maps');
+                $sheet->setCellValue('G5', 'Keterangan Absen');
+                $sheet->setCellValue('H5', 'Titik Lokasi Maps');
                 $sheet->getStyle('A5:F5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $dataabsensi = $querydata;
                 $no = 1;
@@ -140,7 +141,8 @@ class Docs extends CI_Controller
                     $sheet->setCellValue('D' . $rowx, $rowabsen->jam_masuk);
                     $sheet->setCellValue('E' . $rowx, (empty($rowabsen->jam_pulang)) ? 'Belum Absen Pulang' : $rowabsen->jam_pulang);
                     $sheet->setCellValue('F' . $rowx, ($rowabsen->status_pegawai == 1) ? 'Sudah Absen' : (($rowabsen->status_pegawai == 2) ? 'Absen Terlambat' : 'Belum Absen'));
-                    $sheet->setCellValue('G' . $rowx, (empty($rowabsen->maps_absen)) ? 'Lokasi Tidak Ditemukan' : (($rowabsen->maps_absen == 'No Location') ? 'Lokasi Tidak Ditemukan' : $rowabsen->maps_absen));
+                    $sheet->setCellValue('G' . $rowx, $rowabsen->keterangan_absen);
+                    $sheet->setCellValue('H' . $rowx, (empty($rowabsen->maps_absen)) ? 'Lokasi Tidak Ditemukan' : (($rowabsen->maps_absen == 'No Location') ? 'Lokasi Tidak Ditemukan' : $rowabsen->maps_absen));
                     $rowx++;
                 }
                 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5);
@@ -150,6 +152,7 @@ class Docs extends CI_Controller
                 $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20);
                 $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(25);
                 $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(38);
+                $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(38);
 
                 $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
                 $filename = "absensipegawai_" . time() . "_bulanan" . "_download";

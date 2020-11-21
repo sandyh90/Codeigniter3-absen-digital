@@ -34,9 +34,9 @@ class Home extends CI_Controller
 			'title' => $this->get_datasetupapp['nama_app_absensi'],
 			'user' => $this->get_datasess,
 			'dataapp' => $this->get_datasetupapp,
-			'dbabsensi' => $this->M_Front->fetchdbabsen($fetchnama['nama_lengkap'])
+			'dbabsensi' => $this->M_Front->fetchdbabsen($fetchnama['nama_lengkap']),
+			'greeting' => $greet
 		];
-		$data['greeting'] = $greet;
 		$this->load->view('layout/header', $data);
 		$this->load->view('layout/navbar', $data);
 		$this->load->view('layout/sidebar', $data);

@@ -21,6 +21,8 @@
                 <dd class="col-sm-7"><?= (empty($dataabsensi['jam_pulang'])) ? 'Belum Absen Pulang' : $dataabsensi['jam_pulang']; ?></dd>
                 <dt class="col-sm-5">Status Kehadiran:</dt>
                 <dd class="col-sm-7"><?= ($dataabsensi['status_pegawai'] == 1) ? 'Sudah Absen' : (($dataabsensi['status_pegawai'] == 2) ? 'Absen Terlambat' : 'Belum Absen'); ?></dd>
+                <dt class="col-sm-5">Keterangan Absen:</dt>
+                <dd class="col-sm-7"><?= $dataabsensi['keterangan_absen'] ?></dd>
                 <dt class="col-sm-5">Titik Lokasi Maps:</dt>
                 <dd class="col-sm-7"><?= (empty($dataabsensi['maps_absen'])) ? 'Lokasi Tidak Ditemukan' : (($dataabsensi['maps_absen'] == 'No Location') ? 'Lokasi Tidak Ditemukan' : $dataabsensi['maps_absen']); ?></dd>
             </dl>

@@ -11,6 +11,8 @@
             <dd class="col-sm-7"><?= (empty($dataabsensi['jam_pulang'])) ? 'Belum Absen Pulang' : $dataabsensi['jam_pulang']; ?></dd>
             <dt class="col-sm-5">Status Kehadiran:</dt>
             <dd class="col-sm-7"><?= ($dataabsensi['status_pegawai'] == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : (($dataabsensi['status_pegawai'] == 2) ? '<span class="badge badge-danger">Absen Terlambat</span>' : '<span class="badge badge-primary">Belum Absen</span>'); ?></dd>
+            <dt class="col-sm-5">Keterangan Absen:</dt>
+            <dd class="col-sm-7"><?= $dataabsensi['keterangan_absen'] ?></dd>
         </dl>
     </div>
 </div>

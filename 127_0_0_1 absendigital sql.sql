@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Sep 2020 pada 16.54
+-- Waktu pembuatan: 21 Nov 2020 pada 08.00
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.8
 
@@ -36,8 +36,16 @@ CREATE TABLE `db_absensi` (
   `jam_masuk` varchar(13) NOT NULL,
   `jam_pulang` varchar(13) NOT NULL,
   `status_pegawai` int(1) NOT NULL,
+  `keterangan_absen` varchar(100) NOT NULL,
   `maps_absen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `db_absensi`
+--
+
+INSERT INTO `db_absensi` (`id_absen`, `nama_pegawai`, `tgl_absen`, `jam_masuk`, `jam_pulang`, `status_pegawai`, `keterangan_absen`, `maps_absen`) VALUES
+(5693, 'Admin', 'Sabtu, 21 November 2020', '14 : 57 : 05', '', 2, 'Bekerja Di Rumah / WFH', 'No Location');
 
 -- --------------------------------------------------------
 
@@ -118,7 +126,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_pegawai`, `nama_lengkap`, `username`, `password`, `role_id`, `umur`, `image`, `qr_code_image`, `kode_pegawai`, `instansi`, `jabatan`, `npwp`, `tgl_lahir`, `tempat_lahir`, `jenis_kelamin`, `bagian_shift`, `is_active`, `qr_code_use`, `is_online`, `last_login`, `date_created`) VALUES
-(12, 'Admin', 'admin', '$2y$10$sZVyS3G6aVjMRoLq0JhuZuiAat.QjOOtbcyohRih3IxtQaEvJG4Eq', 1, 18, 'default.png', 'no-qrcode.png', '293571010111', '[Ubah Nama Instansi]', 'Test', 'Tidak Ada', '2020-09-08', 'Test', 'Laki - Laki', 1, 1, 0, 1, 1600095165, 1584698797);
+(12, 'Admin', 'admin', '$2y$10$sZVyS3G6aVjMRoLq0JhuZuiAat.QjOOtbcyohRih3IxtQaEvJG4Eq', 1, 18, 'default.png', 'no-qrcode.png', '293571010111', '[Ubah Nama Instansi]', 'Test', 'Tidak Ada', '2020-09-08', 'Test', 'Laki - Laki', 1, 1, 0, 0, 1605945510, 1584698797);
 
 --
 -- Indexes for dumped tables
