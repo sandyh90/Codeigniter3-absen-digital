@@ -65,3 +65,7 @@ ini bukan cara yang paling akurat menurut saya
 - Perbaikan pada layout export excel
 - Perbaikan beberapa bug yang telah ditemukan 
 - Perubahan pada layout halaman setting user
+
+### 11-21-2020
+- Penambahan fitur untuk keterangan absen pada saat absen
+- Perbaikan lokasi tidak terdeteksi pada fitur instant absen
