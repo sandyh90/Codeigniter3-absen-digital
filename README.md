@@ -14,6 +14,11 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 > - Export Absen (Support PDF & Excel)
 > - Absensi Dengan Maps (Beta)
 
+
+## Issues
+- Terdapat sedikit bug pada absensi
+- Komponen script javascript scan qrcode mengalami error pada saat hosting ke server [Tracking Issue]
+
 ## Server Requirement
 
 > - PHP 7.4.8
@@ -42,13 +47,12 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 ![Front Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Absensi%20Online.png)
 ![Konfirmasi Absen](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Confirm%20Instant%20Absen.png)
 
+[Demo Web](http://demo.nerosky.rf.gd/absendigitalci3/)
+
 ## Alasan Memakai Folder Public
 
 Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk keamanan pada data sistem aplikasi ini, mungkin ini tidak begitu efektif tetapi ini sangat berguna untuk menghindari hal - hal yang tidak diinginkan dan juga
 ini bukan cara yang paling akurat menurut saya 
-
-## Issues
-- Terdapat sedikit bug pada absensi
 
 ## Change Log
 ### 9-13-2020
