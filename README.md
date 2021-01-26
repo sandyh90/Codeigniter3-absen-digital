@@ -47,6 +47,8 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 ![Front Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Absensi%20Online.png)
 ![Konfirmasi Absen](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Confirm%20Instant%20Absen.png)
 
+Ingin mencoba aplikasi web ini silakan kunjungi
+
 [Demo Web](http://demo.nerosky.rf.gd/absendigitalci3/)
 
 ## Alasan Memakai Folder Public
