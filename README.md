@@ -22,7 +22,9 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 
 ## Issues
 - Terdapat sedikit bug pada absensi
-- Komponen script javascript scan qrcode mengalami error pada saat hosting ke server [Tracking Issue]
+- Berhubung untuk fitur scan barcode menggunakan javascript dari komponen WebRTC API maka server diharuskan untuk menggunakan
+yang bernama SSL dengan mengharuskan web server berjalan menggunakan protokol HTTPS bukan HTTP berdasarkan new chrome security policy
+maka dengan itu fitur scan barcode akan ditiadakan.
 
 ## Server Requirement
 
