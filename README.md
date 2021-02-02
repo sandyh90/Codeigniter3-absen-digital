@@ -5,6 +5,9 @@ terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki ce
 
 ## Attention: Migrating From Codeigniter 3 To Codeigniter 4 (Under Working)
 
+Untuk saat ini sedang ada rencana untuk migrasi dari versi codeigniter lama ke
+model yang terbaru saat ini kemungkinan akan dibuat nanti. (Stay Tuned)
+
 ## Fitur
 
 Fitur Yang Tersedia Pada Aplikasi Ini:
