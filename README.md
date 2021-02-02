@@ -3,7 +3,7 @@
 Absen digital menggunakan Codeigniter 3 ini merupakan sebuah project saya yang telah dibuat pada saat saya memiliki waktu luang mungkin aplikasi ini tidak 100% complete dan masih ada
 terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki celah tersebut sebisa mungkin.
 
-## Attention: Migrating From Codeigniter 3 To Codeigniter 4 (Under Working)
+## Attention: Migrating From Codeigniter 3 To Codeigniter 4 (Planned)
 
 Untuk saat ini sedang ada rencana untuk migrasi dari versi codeigniter lama ke
 model yang terbaru saat ini kemungkinan akan dibuat nanti. (Stay Tuned)
