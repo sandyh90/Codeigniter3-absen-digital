@@ -3,16 +3,28 @@
 Absen digital menggunakan Codeigniter 3 ini merupakan sebuah project saya yang telah dibuat pada saat saya memiliki waktu luang mungkin aplikasi ini tidak 100% complete dan masih ada
 terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki celah tersebut sebisa mungkin.
 
+## Attention: Migrating From Codeigniter 3 To Codeigniter 4 (Planned)
+
+Untuk saat ini sedang ada rencana untuk migrasi dari versi codeigniter lama ke
+model yang terbaru saat ini kemungkinan akan dibuat nanti. (Stay Tuned)
+
 ## Fitur
 
 Fitur Yang Tersedia Pada Aplikasi Ini:
-> - Absen Scan Barcode (Instant Absen [Beta])
+> - Absen Scan Barcode (Instant Absen [Beta]) (Error)
 > - Remember Me
 > - Custom Setting Aplikasi
 > - Informasi Pada Saat Absen
 > - Sistem Login
 > - Export Absen (Support PDF & Excel)
 > - Absensi Dengan Maps (Beta)
+
+
+## Issues
+- Terdapat sedikit bug pada absensi
+- Berhubung untuk fitur scan barcode menggunakan javascript dari komponen WebRTC API maka server diharuskan untuk menggunakan
+yang bernama SSL dengan mengharuskan web server berjalan menggunakan protokol HTTPS bukan HTTP berdasarkan new chrome security policy
+maka dengan itu fitur scan barcode akan ditiadakan.
 
 ## Server Requirement
 
@@ -40,15 +52,15 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 ## Demo / Screenshot
 ![Login Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Login%20Absensi(1).png)
 ![Front Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Absensi%20Online.png)
-![Konfirmasi Absen](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Confirm%20Instant%20Absen.png)
+
+Ingin mencoba aplikasi web ini silakan kunjungi
+
+[Demo Web](http://demo.nerosky.rf.gd/absendigitalci3/)
 
 ## Alasan Memakai Folder Public
 
 Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk keamanan pada data sistem aplikasi ini, mungkin ini tidak begitu efektif tetapi ini sangat berguna untuk menghindari hal - hal yang tidak diinginkan dan juga
 ini bukan cara yang paling akurat menurut saya 
-
-## Issues
-- Terdapat sedikit bug pada absensi
 
 ## Change Log
 ### 9-13-2020
@@ -65,3 +77,7 @@ ini bukan cara yang paling akurat menurut saya
 - Perbaikan pada layout export excel
 - Perbaikan beberapa bug yang telah ditemukan 
 - Perubahan pada layout halaman setting user
+
+### 11-21-2020
+- Penambahan fitur untuk keterangan absen pada saat absen
+- Perbaikan lokasi tidak terdeteksi pada fitur instant absen
