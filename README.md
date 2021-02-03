@@ -87,6 +87,32 @@ Note: jika anda ingin tidak memakai folder public anda bisa pindahkan semua isi 
 	$application_folder = 'application'; <-- Sebelumnya ../application
 ```
 
+Dan jangan lupa mengubah juga path autoloader composer di "**application/config/config.php**" dan cari confignya seperti ini
+
+```
+/*
+|--------------------------------------------------------------------------
+| Composer auto-loading
+|--------------------------------------------------------------------------
+|
+| Enabling this setting will tell CodeIgniter to look for a Composer
+| package auto-loader script in application/vendor/autoload.php.
+|
+|	$config['composer_autoload'] = TRUE;
+|
+| Or if you have your vendor/ directory located somewhere else, you
+| can opt to set a specific path as well:
+|
+|	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
+|
+| For more information about Composer, please visit http://getcomposer.org/
+|
+| Note: This will NOT disable or override the CodeIgniter-specific
+|	autoloading (application/config/autoload.php)
+*/
+$config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/autoload.php
+```
+
 ## Change Log
 ### 9-13-2020
 - Export dengan metode excel
