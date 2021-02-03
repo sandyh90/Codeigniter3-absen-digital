@@ -73,12 +73,12 @@ class M_Admin extends CI_Model
                 if ($this->upload->do_upload('foto_pegawai')) {
                     $gbr = $this->upload->data();
                     $config['image_library'] = 'gd2';
-                    $config['source_image'] = '../public/storage/profile/' . $gbr['file_name'];
+                    $config['source_image'] = base_url('storage/profile/') . $gbr['file_name'];
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['width'] = 300;
                     $config['height'] = 300;
-                    $config['new_image'] = '../public/storage/profile/' . $gbr['file_name'];
+                    $config['new_image'] = base_url('storage/profile/') . $gbr['file_name'];
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
 
@@ -95,9 +95,9 @@ class M_Admin extends CI_Model
                 $this->load->library('ciqrcode'); //pemanggilan library QR CODE
 
                 $config['cacheable']    = true; //boolean, the default is true
-                $config['cachedir']     = '../public/storage/sys/cache/'; //string, the default is application/cache/
-                $config['errorlog']     = '../public/storage/sys/log/'; //string, the default is application/logs/
-                $config['imagedir']     = '../public/storage/qrcode_pegawai/'; //direktori penyimpanan qr code
+                $config['cachedir']     = base_url('storage/sys/cache/'); //string, the default is application/cache/
+                $config['errorlog']     = base_url('storage/sys/log/'); //string, the default is application/logs/
+                $config['imagedir']     = base_url('storage/qrcode_pegawai/'); //direktori penyimpanan qr code
                 $config['quality']      = true; //boolean, the default is true
                 $config['size']         = '1024'; //interger, the default is 1024
                 $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
@@ -109,7 +109,7 @@ class M_Admin extends CI_Model
                 $params['data'] = $kd_pegawai; //data yang akan di jadikan QR CODE
                 $params['level'] = 'H'; //H=High
                 $params['size'] = 10;
-                $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
+                $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE
                 $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
                 $senddata = [
                     'qr_code_image' => $image_name,

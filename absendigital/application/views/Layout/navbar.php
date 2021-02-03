@@ -13,9 +13,6 @@
                     <div class="d-inline mr-1">Nama:</div><?= $user['nama_lengkap']; ?>
                 </h6>
                 <h6 class="dropdown-header">
-                    <div class="d-inline">Status:<?= $statususer = ($user['is_online'] == 1) ? '<span class="badge badge-success ml-1">Online</span>' : '<span class="badge badge-danger ml-1">Offline</span>'; ?>
-                </h6>
-                <h6 class="dropdown-header">
                     <div class="mr-1 d-inline">Jabatan:</div><?= $user['jabatan'] ?>
                 </h6>
                 <h6 class="dropdown-header">

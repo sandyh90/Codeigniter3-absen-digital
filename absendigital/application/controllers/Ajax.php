@@ -36,32 +36,6 @@ class Ajax extends CI_Controller
         echo json_encode($reponse);
     }
 
-    //Fitur Ajax Scan Absensi
-    public function scandata()
-    {
-        $querydb = $this->db->get_where('user', ['id_pegawai' => htmlspecialchars($this->input->post('id_pgw'))])->row_array();
-        $reponse = [
-            'csrfName' => $this->security->get_csrf_token_name(),
-            'csrfHash' => $this->security->get_csrf_hash()
-        ];
-        if ($this->db->get_where('user', ['id_pegawai' => htmlspecialchars($this->input->post('id_pgw'))])->row_array()) {
-            $reponse = [
-                'csrfName' => $this->security->get_csrf_token_name(),
-                'csrfHash' => $this->security->get_csrf_hash(),
-                'name_pgw' => $querydb['nama_lengkap'],
-                'success' => true
-            ];
-        } elseif (empty($this->db->get_where('user', ['id_pegawai' => htmlspecialchars($this->input->post('id_pgw'))])->row_array())) {
-            $reponse = [
-                'csrfName' => $this->security->get_csrf_token_name(),
-                'csrfHash' => $this->security->get_csrf_hash(),
-                'success' => false,
-                'msgscan' => '<div class="alert alert-danger text-center" role="alert">Data Pegawai Tidak Ada</div>'
-            ];
-        }
-        echo json_encode($reponse);
-    }
-
     //Fitur Ajax Tombol Absensi
 
     public function absenajax()
@@ -350,11 +324,8 @@ class Ajax extends CI_Controller
                 ],
             ];
             $this->form_validation->set_rules($validation);
-            $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
             if ($this->form_validation->run() == FALSE) {
-                foreach ($_POST as $key => $value) {
-                    $reponse['messages'][$key] = form_error($key);
-                }
+                $reponse['messages'] = '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>';
             } else {
                 $this->M_Admin->crudpgw($typesend);
                 $reponse = [
@@ -505,9 +476,7 @@ class Ajax extends CI_Controller
         $this->form_validation->set_rules($validation);
         $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
         if ($this->form_validation->run() == FALSE) {
-            foreach ($_POST as $key => $value) {
-                $reponse['messages'][$key] = form_error($key);
-            }
+            $reponse['messages'] = '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>';
         } else {
             $this->M_Admin->crudpgw($typesend);
             $reponse = [
@@ -541,13 +510,12 @@ class Ajax extends CI_Controller
                     $no++,
                     $r->nama_lengkap,
                     $r->kode_pegawai,
-                    $pasfoto = '<img class="img-thumbnail" src="' . $img_source = ($r->image == 'default.png' ? base_url('assets/img/default-profile.png') : base_url('storage/profile/' . $r->image)) . '" class="card-img" style="width: 100%;">',
+                    '<img class="img-thumbnail" src="' . ($r->image == 'default.png' ? base_url('assets/img/default-profile.png') : base_url('storage/profile/' . $r->image)) . '" class="card-img" style="width: 100%;">',
                     $r->username,
                     $r->npwp,
                     $r->jenis_kelamin,
                     ($r->role_id == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->role_id == 2) ? '<span class="badge badge-primary ml-1">Moderator</span>' : (($r->role_id == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
                     ($r->bagian_shift == 1) ? '<span class="badge badge-success ml-1">Full Time</span>' : (($r->bagian_shift == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'),
-                    ($r->is_online == 1) ? '<span class="badge badge-success ml-1">Online</span>' : '<span class="badge badge-danger ml-1">Offline</span>',
                     ($r->is_active == 1) ? '<span class="badge badge-success ml-1">Terverifikasi</span>' : '<span class="badge badge-danger ml-1">Belum Terverifikasi</span>',
                     '<div class="btn-group btn-small " style="text-align: right;">
                         <button id="detailpegawai" class="btn btn-primary view-pegawai" data-pegawai-id="' . $r->id_pegawai . '" title="Lihat Pegawai"><span class="fas fa-fw fa-address-card"></span></button>
@@ -599,7 +567,7 @@ class Ajax extends CI_Controller
                 }
             }
         } elseif ($dataabsen == 'allself') {
-            $query = $this->db->get_where("db_absensi", ['nama_pegawai' => $datapegawai['nama_lengkap']]);
+            $query = $this->db->get_where("db_absensi", ['kode_pegawai' => $datapegawai['kode_pegawai']]);
             foreach ($query->result() as $r) {
                 $data[] = [
                     $no++,

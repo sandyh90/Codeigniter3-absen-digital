@@ -54,8 +54,9 @@ class M_Front extends CI_Model
                 $this->db->update('db_absensi', $data);
             } else {
                 $data = [
-                    'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', true)),
-                    'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true)),
+                    'nama_pegawai' => $this->get_datasess['nama_lengkap'],
+                    'kode_pegawai' => $this->get_datasess['kode_pegawai'],
+                    'jam_masuk' => $clocknow,
                     'id_absen' => random_string('numeric', 5),
                     'tgl_absen' => $today,
                     'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),

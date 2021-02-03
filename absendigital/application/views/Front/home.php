@@ -32,7 +32,7 @@
                         <div class="col-md-10 col-sm-8 col-6">
                             <dl class="row">
                                 <dt class="col-sm-5">Nama Lengkap:</dt>
-                                <dd class="col-sm-7" id="nama_pegawai"><?= $user['nama_lengkap'] ?></dd>
+                                <dd class="col-sm-7"><?= $user['nama_lengkap'] ?></dd>
                                 <dt class="col-sm-5">Umur:</dt>
                                 <dd class="col-sm-7"><?= $user['umur'] ?><div class="ml-1 d-inline">Tahun</div>
                                 </dd>

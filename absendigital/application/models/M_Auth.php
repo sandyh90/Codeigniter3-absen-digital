@@ -44,7 +44,6 @@ class M_Auth extends CI_Model
                         'logged_in' => true
                     ];
                     $this->db->where('user.id_pegawai', $user['id_pegawai']);
-                    $this->db->update('user', ['is_online' => 1]);
                     $this->session->set_userdata($membuat_session); //Memasukan / menyimpan data ke session
                     if (!empty($this->input->post('rememberme'))) {
                         $hash_rememberme = base64_encode(random_bytes(32));
@@ -93,8 +92,7 @@ class M_Auth extends CI_Model
     public function do_logout()
     {
         $update_db = [
-            'last_login' => time(),
-            'is_online' => 0
+            'last_login' => time()
         ];
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('user', $update_db);

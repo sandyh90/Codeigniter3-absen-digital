@@ -3,8 +3,11 @@
         <div class="col-lg-6 align-self-center">
             <div class="text-center my-2">
                 <img src="<?= $logo_source = (empty($dataapp['logo_instansi'])) ? base_url('assets/img/clock-image.png') : (($dataapp['logo_instansi'] == 'default-logo.png') ? base_url('assets/img/clock-image.png') : base_url('storage/setting/' . $dataapp['logo_instansi'])); ?>" class="card-img" style="width:50%;">
-                <h1 class="text-white"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></h1>
-                <h3 class="text-white" id="dateclocknow"></h3>
+                <h3 class="text-white"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></h3>
+                <h4 id="date-and-clock mt-3">
+                    <h5 class="text-white" id="clocknow"></h5>
+                    <h5 class="text-white" id="datenow"></h5>
+                </h4>
             </div>
         </div>
         <div class="col-lg-6">
@@ -42,8 +45,13 @@
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><button type="submit" class="btn btn-primary"><span class="fas fa-fw fa-sign-in-alt mr-2"></span>Login</button></div>
                     </form>
                     <hr>
-                    <div class="small mb-3 text-muted">Anda bisa absen tanpa harus login dengan fitur scan menggunakan QR Code yang telah disediakan</div>
-                    <a class="btn btn-success btn-block" href="<?= base_url('instantabsen'); ?>" target="_blank"><span class="fas fa-fw fa-bolt mr-2"></span>Instant Absen [Beta]</a></a>
+                    <div class="container">
+                        <div class="d-flex align-items-center justify-content-center small">
+                            <div class="text-muted">Copyright &copy; <?= date("Y"); ?><a href="<?= base_url(); ?>" class="ml-1"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></a>
+                                <div class="d-inline">Powered By<a href="https://github.com/sandyh90" class="ml-1">Pickedianz</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

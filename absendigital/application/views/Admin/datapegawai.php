@@ -21,7 +21,6 @@
                             <th>Jenis Kelamin</th>
                             <th>Level</th>
                             <th>Shift Bagian</th>
-                            <th>Status Akun</th>
                             <th>Verifikasi</th>
                             <th>Aksi</th>
                         </tr>
@@ -37,7 +36,6 @@
                             <th>Jenis Kelamin</th>
                             <th>Level</th>
                             <th>Shift Bagian</th>
-                            <th>Status Akun</th>
                             <th>Verifikasi</th>
                             <th>Aksi</th>
                         </tr>
@@ -198,6 +196,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="my-2" id="info-data"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-times mr-1"></span>Batal</button>

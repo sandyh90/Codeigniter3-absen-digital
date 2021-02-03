@@ -54,7 +54,7 @@ class M_User extends CI_Model
                 if ($this->upload->do_upload('pas_foto')) {
                     $gbr = $this->upload->data();
                     $config['image_library'] = 'gd2';
-                    $config['source_image'] = '../public/storage/profile/' . $gbr['file_name'];
+                    $config['source_image'] = base_url('storage/profile/') . $gbr['file_name'];
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['width'] = 300;

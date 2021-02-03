@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2020 pada 08.00
+-- Waktu pembuatan: 03 Feb 2021 pada 03.59
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.8
 
@@ -32,6 +32,7 @@ USE `absensi_online`;
 CREATE TABLE `db_absensi` (
   `id_absen` int(11) NOT NULL,
   `nama_pegawai` varchar(125) NOT NULL,
+  `kode_pegawai` varchar(125) NOT NULL,
   `tgl_absen` varchar(125) NOT NULL,
   `jam_masuk` varchar(13) NOT NULL,
   `jam_pulang` varchar(13) NOT NULL,
@@ -48,6 +49,7 @@ CREATE TABLE `db_absensi` (
 
 CREATE TABLE `db_rememberme` (
   `id_session` int(11) NOT NULL,
+  `kode_pegawai` varchar(125) NOT NULL,
   `username` varchar(255) NOT NULL,
   `user_agent` varchar(35) NOT NULL,
   `agent_string` varchar(255) NOT NULL,
@@ -82,7 +84,7 @@ CREATE TABLE `db_setting` (
 --
 
 INSERT INTO `db_setting` (`status_setting`, `nama_instansi`, `jumbotron_lead_set`, `nama_app_absensi`, `logo_instansi`, `timezone`, `absen_mulai`, `absen_mulai_to`, `absen_pulang`, `maps_use`) VALUES
-(1, '[Ubah Nama Instansi]', '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]', 'Absensi Online', 'default-logo.png', 'Asia/Jakarta', '06:00:00', '11:00:00', '16:00:00', 0);
+(1, '[Ubah Nama Instansi]', '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]', 'Absensi Online', 'default-logo.png', 'Asia/Jakarta', '06:00:00', '11:00:00', '16:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,6 @@ CREATE TABLE `user` (
   `bagian_shift` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
   `qr_code_use` int(2) NOT NULL,
-  `is_online` int(1) NOT NULL,
   `last_login` int(11) NOT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -118,8 +119,8 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_pegawai`, `nama_lengkap`, `username`, `password`, `role_id`, `umur`, `image`, `qr_code_image`, `kode_pegawai`, `instansi`, `jabatan`, `npwp`, `tgl_lahir`, `tempat_lahir`, `jenis_kelamin`, `bagian_shift`, `is_active`, `qr_code_use`, `is_online`, `last_login`, `date_created`) VALUES
-(12, 'Admin', 'admin', '$2y$10$sZVyS3G6aVjMRoLq0JhuZuiAat.QjOOtbcyohRih3IxtQaEvJG4Eq', 1, 18, 'default.png', 'no-qrcode.png', '293571010111', '[Ubah Nama Instansi]', 'Test', 'Tidak Ada', '2020-09-08', 'Test', 'Laki - Laki', 1, 1, 0, 0, 1605945510, 1584698797);
+INSERT INTO `user` (`id_pegawai`, `nama_lengkap`, `username`, `password`, `role_id`, `umur`, `image`, `qr_code_image`, `kode_pegawai`, `instansi`, `jabatan`, `npwp`, `tgl_lahir`, `tempat_lahir`, `jenis_kelamin`, `bagian_shift`, `is_active`, `qr_code_use`, `last_login`, `date_created`) VALUES
+(12, 'Admin', 'admin', '$2y$10$sZVyS3G6aVjMRoLq0JhuZuiAat.QjOOtbcyohRih3IxtQaEvJG4Eq', 1, 18, 'default.png', 'no-qrcode.png', '293571010111', '[Ubah Nama Instansi]', 'Test', 'Tidak Ada', '2020-09-08', 'Test', 'Laki - Laki', 1, 1, 0, 1612319092, 1584698797);
 
 --
 -- Indexes for dumped tables
@@ -157,7 +158,7 @@ ALTER TABLE `db_rememberme`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
