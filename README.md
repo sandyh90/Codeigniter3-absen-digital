@@ -81,3 +81,9 @@ ini bukan cara yang paling akurat menurut saya
 ### 11-21-2020
 - Penambahan fitur untuk keterangan absen pada saat absen
 - Perbaikan lokasi tidak terdeteksi pada fitur instant absen
+
+### 2-3-2021
+- Scan barcode pada fitur absensi dihapuskan karena adanya kebijakan baru tentang kebijakan keamanan pada web browser
+- Perbaikan pada folder view dikarenakan terjadinya error 404 not found pada saat hosting
+- Perubahan layout pada halaman login
+- Fitur status Online / Offline pada aplikasi di hapuskan sementara
