@@ -11,7 +11,7 @@ model yang terbaru saat ini kemungkinan akan dibuat nanti. (Stay Tuned)
 ## Fitur
 
 Fitur Yang Tersedia Pada Aplikasi Ini:
-> - ~~Absen Scan Barcode (Instant Absen [Beta])~~ [Removed]
+> - ~~Absen Scan Barcode (Instant Absen [Beta])~~ [Removed Temporary]
 > - Remember Me
 > - Custom Setting Aplikasi
 > - Informasi Pada Saat Absen
@@ -22,9 +22,8 @@ Fitur Yang Tersedia Pada Aplikasi Ini:
 
 ## Issues
 - Terdapat sedikit bug pada absensi
-- Berhubung untuk fitur scan barcode menggunakan javascript dari komponen WebRTC API maka server diharuskan untuk menggunakan
-yang bernama SSL dengan mengharuskan web server berjalan menggunakan protokol HTTPS bukan HTTP berdasarkan new chrome security policy
-maka dengan itu fitur scan barcode akan ditiadakan.
+- Untuk fitur seperti scan barcode dan absen menggunakan lokasi diharuskan untuk menggunakan protokol HTTPS bukan HTTP dengan keamanan SSL pada web server
+dikarena kebijakan keamanan terbaru dari masing - masing web browser versi saat ini agar fitur tersebut dapat berjalan normal.
 
 ## Server Requirement
 
@@ -119,3 +118,4 @@ Note: jika anda ingin tidak memakai folder public anda bisa pindahkan semua isi 
 - Perubahan layout pada halaman login
 - Fitur status Online / Offline pada aplikasi di hapuskan sementara
 - Perbaikan untuk fitur upload gambar dan qr code dikarena path penyimpanan masih metode static
+- Perbaikan pada list user jika hanya ada 1 user administrator tidak bisa dihapus [Tahap Percobaan]
