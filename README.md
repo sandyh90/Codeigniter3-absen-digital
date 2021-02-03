@@ -87,3 +87,4 @@ ini bukan cara yang paling akurat menurut saya
 - Perbaikan pada folder view dikarenakan terjadinya error 404 not found pada saat hosting
 - Perubahan layout pada halaman login
 - Fitur status Online / Offline pada aplikasi di hapuskan sementara
+- Perbaikan untuk fitur upload gambar dan qr code dikarena path penyimpanan masih metode static
