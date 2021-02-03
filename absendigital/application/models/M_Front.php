@@ -66,16 +66,17 @@ class M_Front extends CI_Model
                 $this->db->insert('db_absensi', $data);
             }
         } elseif (strtotime($clocknow) > strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) >= strtotime($appsettings['absen_pulang'])) {
-            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', true))])->row_array()) {
+            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'nama_pegawai' => $this->get_datasess['nama_lengkap']])->row_array()) {
                 $data = [
                     'jam_pulang' => htmlspecialchars($this->input->post('jam_absen', true))
                 ];
-                $this->db->where('tgl_absen', $today)->where('nama_pegawai', htmlspecialchars($this->input->post('nama_pegawai', true)));
+                $this->db->where('tgl_absen', $today)->where('nama_pegawai', $this->get_datasess['nama_lengkap']);
                 $this->db->update('db_absensi', $data);
             } else {
                 $data = [
-                    'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', true)),
-                    'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true)),
+                    'nama_pegawai' => $this->get_datasess['nama_lengkap'],
+                    'kode_pegawai' => $this->get_datasess['kode_pegawai'],
+                    'jam_masuk' => $clocknow,
                     'id_absen' => random_string('numeric', 5),
                     'tgl_absen' => $today,
                     'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
@@ -86,8 +87,9 @@ class M_Front extends CI_Model
             }
         } elseif (strtotime($clocknow) > strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) <= strtotime($appsettings['absen_pulang'])) {
             $data = [
-                'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', true)),
-                'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true)),
+                'nama_pegawai' => $this->get_datasess['nama_lengkap'],
+                'kode_pegawai' => $this->get_datasess['kode_pegawai'],
+                'jam_masuk' => $clocknow,
                 'id_absen' => random_string('numeric', 5),
                 'tgl_absen' => $today,
                 'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
