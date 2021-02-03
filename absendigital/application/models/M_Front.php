@@ -46,11 +46,11 @@ class M_Front extends CI_Model
         $today = $this->get_today_date;
         $clocknow = date("H:i:s");
         if (strtotime($clocknow) >= strtotime($appsettings['absen_mulai']) && strtotime($clocknow) <= strtotime($appsettings['absen_mulai_to'])) {
-            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', true))])->row_array()) {
+            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
                 $data = [
                     'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true))
                 ];
-                $this->db->where('tgl_absen', $today)->where('nama_pegawai', htmlspecialchars($this->input->post('nama_pegawai', true)));
+                $this->db->where('tgl_absen', $today)->where('kode_pegawai', $this->get_datasess['kode_pegawai']);
                 $this->db->update('db_absensi', $data);
             } else {
                 $data = [
@@ -66,11 +66,11 @@ class M_Front extends CI_Model
                 $this->db->insert('db_absensi', $data);
             }
         } elseif (strtotime($clocknow) > strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) >= strtotime($appsettings['absen_pulang'])) {
-            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'nama_pegawai' => $this->get_datasess['nama_lengkap']])->row_array()) {
+            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
                 $data = [
-                    'jam_pulang' => htmlspecialchars($this->input->post('jam_absen', true))
+                    'jam_pulang' => $clocknow
                 ];
-                $this->db->where('tgl_absen', $today)->where('nama_pegawai', $this->get_datasess['nama_lengkap']);
+                $this->db->where('tgl_absen', $today)->where('kode_pegawai', $this->get_datasess['kode_pegawai']);
                 $this->db->update('db_absensi', $data);
             } else {
                 $data = [
