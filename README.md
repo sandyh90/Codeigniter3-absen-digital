@@ -62,6 +62,37 @@ Ingin mencoba aplikasi web ini silakan kunjungi
 Mengapa saya pindahkan untuk file index.php ke folder public dengan alasan untuk keamanan pada data sistem aplikasi ini, mungkin ini tidak begitu efektif tetapi ini sangat berguna untuk menghindari hal - hal yang tidak diinginkan dan juga
 ini bukan cara yang paling akurat menurut saya 
 
+Note: jika anda ingin tidak memakai folder public anda bisa pindahkan semua isi didalam folder public ke folder root aplikasi dan jangan lupa untuk mengganti path filenya dan cari confignya seperti ini pada file **index.php**.
+
+```
+/*
+ *---------------------------------------------------------------
+ * SYSTEM DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" directory.
+ * Set the path if it is not in the same directory as this file.
+ */
+	$system_path = 'system'; <-- Sebelumnya ../system
+
+/*
+ *---------------------------------------------------------------
+ * APPLICATION DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * directory than the default one you can set its name here. The directory
+ * can also be renamed or relocated anywhere on your server. If you do,
+ * use an absolute (full) server path.
+ * For more info please see the user guide:
+ *
+ * https://codeigniter.com/userguide3/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ */
+	$application_folder = 'application'; <-- Sebelumnya ../application
+```
+
 ## Change Log
 ### 9-13-2020
 - Export dengan metode excel
