@@ -48,7 +48,7 @@ class M_Front extends CI_Model
         if (strtotime($clocknow) >= strtotime($appsettings['absen_mulai']) && strtotime($clocknow) <= strtotime($appsettings['absen_mulai_to'])) {
             if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
                 $data = [
-                    'jam_masuk' => htmlspecialchars($this->input->post('jam_absen', true))
+                    'jam_masuk' => $clocknow
                 ];
                 $this->db->where('tgl_absen', $today)->where('kode_pegawai', $this->get_datasess['kode_pegawai']);
                 $this->db->update('db_absensi', $data);
