@@ -517,9 +517,14 @@ class Ajax extends CI_Controller
                     ($r->role_id == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->role_id == 2) ? '<span class="badge badge-primary ml-1">Moderator</span>' : (($r->role_id == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
                     ($r->bagian_shift == 1) ? '<span class="badge badge-success ml-1">Full Time</span>' : (($r->bagian_shift == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'),
                     ($r->is_active == 1) ? '<span class="badge badge-success ml-1">Terverifikasi</span>' : '<span class="badge badge-danger ml-1">Belum Terverifikasi</span>',
-                    '<div class="btn-group btn-small " style="text-align: right;">
+                    ($query->num_rows() > 1) ?
+                        '<div class="btn-group btn-small " style="text-align: right;">
                         <button id="detailpegawai" class="btn btn-primary view-pegawai" data-pegawai-id="' . $r->id_pegawai . '" title="Lihat Pegawai"><span class="fas fa-fw fa-address-card"></span></button>
                         <button class="btn btn-danger delete-pegawai" title="Hapus Pegawai" data-pegawai-id="' . $r->id_pegawai . '"><span class="fas fa-trash"></span></button>
+                        <button class="btn btn-warning edit-pegawai" title="Edit Pegawai" data-pegawai-id="' . $r->id_pegawai . '"><span class="fas fa-user-edit"></span></button>
+                        <button class="btn btn-secondary activate-pegawai" title="Verifikasi Pegawai" data-pegawai-id="' . $r->id_pegawai . '"><span class="fas fa-user-check"></span></button>
+                    </div>' : '<div class="btn-group btn-small " style="text-align: right;">
+                        <button id="detailpegawai" class="btn btn-primary view-pegawai" data-pegawai-id="' . $r->id_pegawai . '" title="Lihat Pegawai"><span class="fas fa-fw fa-address-card"></span></button>
                         <button class="btn btn-warning edit-pegawai" title="Edit Pegawai" data-pegawai-id="' . $r->id_pegawai . '"><span class="fas fa-user-edit"></span></button>
                         <button class="btn btn-secondary activate-pegawai" title="Verifikasi Pegawai" data-pegawai-id="' . $r->id_pegawai . '"><span class="fas fa-user-check"></span></button>
                     </div>'
