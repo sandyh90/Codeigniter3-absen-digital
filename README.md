@@ -119,3 +119,4 @@ Note: jika anda ingin tidak memakai folder public anda bisa pindahkan semua isi 
 - Fitur status Online / Offline pada aplikasi di hapuskan sementara
 - Perbaikan untuk fitur upload gambar dan qr code dikarena path penyimpanan masih metode static
 - Perbaikan pada list user jika hanya ada 1 user administrator tidak bisa dihapus [Tahap Percobaan]
+- Perbaikan pada fungsi absen
