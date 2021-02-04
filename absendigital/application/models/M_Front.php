@@ -25,10 +25,10 @@ class M_Front extends CI_Model
         return $this->db->get_where('user')->row_array();
     }
 
-    public function fetchdbabsen($nama_pegawai)
+    public function fetchdbabsen($kode_pegawai)
     {
         $today = $this->get_today_date;
-        return $this->db->get_where('db_absensi', ['nama_pegawai' => $nama_pegawai, 'tgl_absen' => $today])->row_array();
+        return $this->db->get_where('db_absensi', ['kode_pegawai' => $kode_pegawai, 'tgl_absen' => $today])->row_array();
     }
 
     public function crudabs($typesend)
