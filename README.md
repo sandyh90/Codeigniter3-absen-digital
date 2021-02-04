@@ -138,6 +138,5 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Perbaikan pada folder view dikarenakan terjadinya error 404 not found pada saat hosting
 - Perubahan layout pada halaman login
 - Fitur status Online / Offline pada aplikasi di hapuskan sementara
-- Perbaikan untuk fitur upload gambar dan qr code dikarena path penyimpanan masih metode static
 - Perbaikan pada list user jika hanya ada 1 user administrator tidak bisa dihapus [Tahap Percobaan]
 - Perbaikan pada fungsi absen
