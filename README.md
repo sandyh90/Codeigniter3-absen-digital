@@ -6,13 +6,13 @@ terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki ce
 ## Fitur
 
 Fitur Yang Tersedia Pada Aplikasi Ini:
-> - ~~Absen Scan Barcode (Instant Absen [Beta])~~ [Removed Temporary]
-> - Remember Me
-> - Custom Setting Aplikasi
-> - Informasi Pada Saat Absen
-> - Sistem Login
-> - Export Absen (Support PDF & Excel)
-> - Absensi Dengan Maps (Beta)
+- ~~Absen Scan Barcode (Instant Absen [Beta])~~ [Removed Temporary]
+- Remember Me
+- Custom Setting Aplikasi
+- Informasi Pada Saat Absen
+- Sistem Login
+- Export Absen (Support PDF & Excel)
+- Absensi Dengan Maps (Beta)
 
 
 ## Issues
