@@ -50,7 +50,7 @@ class Ajax extends CI_Controller
                 'success' => false,
                 'msgabsen' => '<div class="alert alert-danger text-center" role="alert">Belum Waktunya Absen Datang</div>'
             ];
-        } elseif (strtotime($clocknow) >= strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) <= strtotime($appsettings['absen_pulang']) && $this->db->get_where('db_absensi', ['tgl_absen' => $today, 'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', true))])->row_array()) {
+        } elseif (strtotime($clocknow) >= strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) <= strtotime($appsettings['absen_pulang']) && $this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
             $reponse = [
                 'csrfName' => $this->security->get_csrf_token_name(),
                 'csrfHash' => $this->security->get_csrf_hash(),
@@ -261,40 +261,34 @@ class Ajax extends CI_Controller
                     'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'max_length' => 'Password terlalu pendek, Minimal 8 Karakter!']
                 ],
                 [
-                    'field' => 'kode_pegawai',
-                    'label' => 'Kode Pegawai',
-                    'rules' => 'trim|required|xss_clean|is_unique[user.kode_pegawai]',
-                    'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'is_unique' => 'Kode Pegawai ini telah terdaftar didatabase!']
-                ],
-                [
                     'field' => 'jabatan_pegawai',
                     'label' => 'Jabatan',
                     'rules' => 'trim|required|xss_clean',
                     'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
                 ],
                 [
-                    'field' => 'instansi_pegawai',
-                    'label' => 'Nama Instansi',
-                    'rules' => 'required|xss_clean',
-                    'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
-                ],
-                [
                     'field' => 'npwp_pegawai',
                     'label' => 'NPWP',
-                    'rules' => 'trim|xss_clean',
-                    'errors' => ['xss_clean' => 'Please check your form on %s.']
+                    'rules' => 'trim|xss_clean|numeric',
+                    'errors' => ['xss_clean' => 'Please check your form on %s.', 'numeric' => 'Karakter harus angka tidak boleh huruf pada %s.']
                 ],
                 [
                     'field' => 'umur_pegawai',
                     'label' => 'Umur Pegawai',
                     'rules' => 'required|xss_clean|max_length[2]|numeric',
                     'errors' => [
-                        'required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'numeric' => 'Karakter harus angka tidak boleh huruf.', 'max_length' => 'Angka umur terlalu panjang, Max Karakter 2!'
+                        'required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'numeric' => 'Karakter harus angka tidak boleh huruf pada %s.', 'max_length' => 'Angka umur terlalu panjang, Max Karakter 2!'
                     ]
                 ],
                 [
                     'field' => 'tempat_lahir_pegawai',
                     'label' => 'Tempat Lahir',
+                    'rules' => 'required|xss_clean',
+                    'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
+                ],
+                [
+                    'field' => 'role_pegawai',
+                    'label' => 'Role Pegawai',
                     'rules' => 'required|xss_clean',
                     'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
                 ],
@@ -335,7 +329,24 @@ class Ajax extends CI_Controller
                 ];
             }
         } elseif ($typesend == 'delpgw') {
-            $this->M_Admin->crudpgw($typesend);
+            $check_admin = $this->db->get_where('user', ['role_id' => 1]);
+            $reponse = [
+                'csrfName' => $this->security->get_csrf_token_name(),
+                'csrfHash' => $this->security->get_csrf_hash(),
+                'message' => [],
+                'success' => false
+            ];
+            if ($this->get_datasess['role_id'] != 1 || $check_admin->num_rows() < 1) {
+                $reponse['message'] = 'Hanya admin yang boleh menghapus user!';
+            } else {
+                $reponse = [
+                    'csrfName' => $this->security->get_csrf_token_name(),
+                    'csrfHash' => $this->security->get_csrf_hash(),
+                    'message' => 'Anda telah menghapus user!',
+                    'success' => true
+                ];
+                $this->M_Admin->crudpgw($typesend);
+            }
         } elseif ($typesend == 'actpgw') {
             if ($this->db->get_where('user', ['id_pegawai' => $this->input->post('pgw_id'), 'is_active' => 1])->row_array()) {
                 $reponse = [
@@ -411,40 +422,34 @@ class Ajax extends CI_Controller
                 'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'max_length' => 'Password terlalu pendek, Minimal 8 Karakter!']
             ],
             [
-                'field' => 'kode_pegawai_edit',
-                'label' => 'Kode Pegawai',
-                'rules' => 'trim|required|xss_clean',
-                'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
-            ],
-            [
                 'field' => 'jabatan_pegawai_edit',
                 'label' => 'Jabatan',
                 'rules' => 'trim|required|xss_clean',
                 'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
             ],
             [
-                'field' => 'instansi_pegawai_edit',
-                'label' => 'Nama Instansi',
-                'rules' => 'required|xss_clean',
-                'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
-            ],
-            [
                 'field' => 'npwp_pegawai_edit',
                 'label' => 'NPWP',
-                'rules' => 'trim|xss_clean',
-                'errors' => ['xss_clean' => 'Please check your form on %s.']
+                'rules' => 'trim|xss_clean|numeric',
+                'errors' => ['xss_clean' => 'Please check your form on %s.', 'numeric' => 'Karakter harus angka tidak boleh huruf pada %s.']
             ],
             [
                 'field' => 'umur_pegawai_edit',
                 'label' => 'Umur Pegawai',
                 'rules' => 'required|xss_clean|max_length[2]|numeric',
                 'errors' => [
-                    'required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'numeric' => 'Karakter harus angka tidak boleh huruf.', 'max_length' => 'Angka umur terlalu panjang, Max Karakter 2!'
+                    'required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.', 'numeric' => 'Karakter harus angka tidak boleh huruf pada %s.', 'max_length' => 'Angka umur terlalu panjang, Max Karakter 2!'
                 ]
             ],
             [
                 'field' => 'tempat_lahir_pegawai_edit',
                 'label' => 'Tempat Lahir',
+                'rules' => 'required|xss_clean',
+                'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
+            ],
+            [
+                'field' => 'role_pegawai_edit',
+                'label' => 'Role Pegawai',
                 'rules' => 'required|xss_clean',
                 'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
             ],
@@ -474,7 +479,6 @@ class Ajax extends CI_Controller
             ],
         ];
         $this->form_validation->set_rules($validation);
-        $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
         if ($this->form_validation->run() == FALSE) {
             $reponse['messages'] = '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>';
         } else {
@@ -504,6 +508,7 @@ class Ajax extends CI_Controller
         $data = [];
         $no = 1;
         if ($dataabsen == 'datapgw') {
+            $check_admin = $this->db->get_where('user', ['role_id' => 1]);
             $query = $this->db->get("user");
             foreach ($query->result() as $r) {
                 $data[] = [
@@ -517,7 +522,7 @@ class Ajax extends CI_Controller
                     ($r->role_id == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->role_id == 2) ? '<span class="badge badge-primary ml-1">Moderator</span>' : (($r->role_id == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
                     ($r->bagian_shift == 1) ? '<span class="badge badge-success ml-1">Full Time</span>' : (($r->bagian_shift == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'),
                     ($r->is_active == 1) ? '<span class="badge badge-success ml-1">Terverifikasi</span>' : '<span class="badge badge-danger ml-1">Belum Terverifikasi</span>',
-                    ($query->num_rows() > 1) ?
+                    (($query->num_rows() > 1 && $r->role_id != 1) || $check_admin->num_rows() > 1) ?
                         '<div class="btn-group btn-small " style="text-align: right;">
                         <button id="detailpegawai" class="btn btn-primary view-pegawai" data-pegawai-id="' . $r->id_pegawai . '" title="Lihat Pegawai"><span class="fas fa-fw fa-address-card"></span></button>
                         <button class="btn btn-danger delete-pegawai" title="Hapus Pegawai" data-pegawai-id="' . $r->id_pegawai . '"><span class="fas fa-trash"></span></button>

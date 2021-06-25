@@ -22,7 +22,7 @@ dikarena kebijakan keamanan terbaru dari masing - masing web browser versi saat 
 
 ## Server Requirement
 
-> - PHP 7.4.8
+> - PHP 7.4.8 [Hanya support untuk versi dibawah PHP 8]
 > - Nginx 1.19.1 Or Apache 2.4.46
 > - MariaDB 10.4.13
 
@@ -33,7 +33,8 @@ dikarena kebijakan keamanan terbaru dari masing - masing web browser versi saat 
 
 ## Setting Database
 Untuk menyesuaikan pengaturan pada database anda silakan dibuka:
-> absendigital/application/config/database.php
+
+"**absendigital/application/config/database.php**"
 
 Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan database anda:
 ```
@@ -50,6 +51,36 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 Ingin mencoba aplikasi web ini silakan kunjungi
 
 [Demo Web](http://demo.nerosky.rf.gd/absendigitalci3/)
+
+## Setting Environment
+
+Sebelum memakai aplikasi ini saya sarankan setelah anda telah mengkonfigurasi semuanya pada aplikasi dan berajalan normal dimohon untuk
+mengubah environment "**CI_ENV**" untuk mencegah munculnya error yang menyebabkan aplikasi rentan terkena hacking untuk mengubahnya
+silakan ke "**index.php**" dan ubah konfigurasi berikut yang sebelumnya "**development**" menjadi "**production**"
+
+Note: Untuk sekarang konfigurasinya saya sudah ubah menjadi "**production**" yang sebelumnya "**development**"
+anda bisa mengubah kembali environmentnya jika diperlukan saat menkonfigurasi yang lain.
+
+```
+ *---------------------------------------------------------------
+ * APPLICATION ENVIRONMENT
+ *---------------------------------------------------------------
+ *
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
+ *
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ */
+define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+```
+
 
 ## Alasan Memakai Folder Public
 
@@ -85,6 +116,19 @@ Note: jika anda ingin tidak memakai folder public anda bisa pindahkan semua isi 
  * NO TRAILING SLASH!
  */
 	$application_folder = 'application'; <-- Sebelumnya ../application
+```
+
+Dan ubah juga pada "**application/config/aplikasi_config.php**" dan cari confignya seperti ini
+
+```
+//Untuk path simpan atau hapus foto profile pada aplikasi
+$config['SAVE_FOLDER_PROFILE'] = FCPATH . 'storage/profile/'; <-- Sebelumnya ../public/storage/profile/
+
+//Untuk path simpan atau hapus qr code pada aplikasi
+$config['SAVE_FOLDER_QRCODE'] = FCPATH . 'storage/qrcode_pegawai/'; <-- Sebelumnya ../public/storage/qrcode_pegawai/
+
+//Untuk path simpan atau hapus fitur lain pada aplikasi
+$config['MISC_SAVE_FOLDER'] = FCPATH . 'storage/'; <-- Sebelumnya ../public/storage/
 ```
 
 Dan jangan lupa mengubah juga path autoloader composer di "**application/config/config.php**" dan cari confignya seperti ini
@@ -140,3 +184,15 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Fitur status Online / Offline pada aplikasi di hapuskan sementara
 - Perbaikan pada list user jika hanya ada 1 user administrator tidak bisa dihapus [Tahap Percobaan]
 - Perbaikan pada fungsi absen
+
+### 6-25-2021
+- Perbaikan bug pada absensi
+- Perbaikan validasi pada form yang dimana admin harus assign role kepada user tidak boleh kosong
+- Perbaikan input pengisian npwp pada form validasi harus menggunakan angka
+- Perubahan pada absensi menggunakan lokasi
+- Perubahan id_absen sekarang menggunakan `uniqid()` sebagai kode acak untuk mencegah terjadinya duplikasi id [Tahap Percobaan]
+- User hanya bisa dihapus oleh administrator
+- Penambahan file custom config untuk pengaturan aplikasi "**application/config/aplikasi_config.php**"
+- Perbaikan beberapa bug yang telah ditemukan
+- Kode pegawai pada input form tambah pegawai dihapus dan digantikan dengan generate kode pegawai oleh sistem
+- Perubahan **id_absen** dengan tipedata varchar yang sebelumnya int pada ekspor file db 

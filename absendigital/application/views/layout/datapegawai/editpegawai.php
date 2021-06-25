@@ -45,7 +45,7 @@
     <label for="npwp_pegawai_edit" class="col-sm-4 col-form-label">NPWP</label>
     <div class="col-sm-8">
         <div class="input-group">
-            <input type="text" class="form-control" id="npwp_pegawai_edit" name="npwp_pegawai_edit" value="<?= $datapegawai['npwp'] ?>">
+            <input type="text" class="form-control" id="npwp_pegawai_edit" name="npwp_pegawai_edit" value="<?= $datapegawai['npwp'] == 'Tidak Ada' ? '' : $datapegawai['npwp'] ?>">
             <div class="input-group-append">
                 <div class="input-group-text">Opsional</div>
             </div>
@@ -56,7 +56,7 @@
     <label for="umur_pegawai_edit" class="col-sm-4 col-form-label">Umur</label>
     <div class="col-sm-8">
         <div class="input-group">
-            <input type="text" class="form-control" id="umur_pegawai_edit" name="umur_pegawai_edit" value="<?= $datapegawai['umur'] ?>">
+            <input type="text" class="form-control" id="umur_pegawai_edit" name="umur_pegawai_edit" value="<?= $datapegawai['umur'] ?>" maxlength="2">
             <div class="input-group-append">
                 <div class="input-group-text">Tahun</div>
             </div>
@@ -146,6 +146,7 @@
         </div>
     </div>
 </div>
+<div class="my-2" id="info-edit"></div>
 <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-times mr-1"></span>Batal</button>
     <button type="submit" class="btn btn-primary" id="editpgw-btn"><span class="fas fa-pen mr-1"></span>Edit</button>

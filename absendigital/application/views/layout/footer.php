@@ -94,7 +94,10 @@
             });
             event.preventDefault();
         });
-        <?php if ($dataapp['maps_use'] == 1) : ?>
+
+
+        <?php if ($dataapp['maps_use'] == TRUE) : ?>
+            let maps_absen = "searching...";
             if (document.getElementById("maps-absen")) {
                 window.onload = function() {
                     var popup = L.popup();
@@ -126,31 +129,30 @@
                                 };
 
                                 var marker = L.marker(latLng).addTo(geolocationMap);
+                                maps_absen = position.coords.latitude + ", " + position.coords.longitude;
                                 geolocationMap.setView(latLng);
-                                document.getElementById("location-maps").innerHTML = position.coords.latitude + ", " + position.coords.longitude;
                             },
                             function() {
                                 geolocationErrorOccurred(true, popup, geolocationMap.getCenter());
+                                maps_absen = 'No Location';
                             }
                         );
                     } else {
                         //No browser support geolocation service
                         geolocationErrorOccurred(false, popup, geolocationMap.getCenter());
+                        maps_absen = 'No Location';
                     }
                 };
             }
-        <?php else : ?>
-            if (document.getElementById("location-maps")) {
-                document.getElementById("location-maps").innerHTML = 'No Location';
-            }
+        <?php elseif ($dataapp['maps_use'] == FALSE) : ?>
+            maps_absen = 'No Location';
         <?php endif; ?>
 
         $("#btn-absensi").click(function(e) {
 
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
-            var maps_absen = document.getElementById("location-maps").innerHTML;
-            var ket_absen = $('#ket_absen').val();
+            let ket_absen = $('#ket_absen').val();
 
             $.ajax({
                 type: "POST",
@@ -478,12 +480,6 @@
                 load_process();
                 $('#datapegawai').DataTable().ajax.reload();
             });
-
-            $("#pgwadduser").click(function(e) {
-                e.preventDefault();
-                var acakkode = Math.random().toString().substr(2, 15)
-                document.getElementById('kode_pegawai').value = acakkode
-            });
         </script>
         <script>
             $('#list-absensi-masuk').DataTable({
@@ -761,14 +757,24 @@
                                 });
                             },
                             success: function(data) {
-                                swal.fire({
-                                    icon: 'success',
-                                    title: 'Menghapus User Berhasil',
-                                    text: 'Anda telah menghapus user!',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $('#datapegawai').DataTable().ajax.reload();
+                                if (data.success == false) {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Menghapus User Gagal',
+                                        text: data.message,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                } else {
+                                    swal.fire({
+                                        icon: 'success',
+                                        title: 'Menghapus User Berhasil',
+                                        text: data.message,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $('#datapegawai').DataTable().ajax.reload();
+                                }
                             },
                             error: function() {
                                 swal.fire("Penghapusan Pegawai Gagal", "Ada Kesalahan Saat menghapus pegawai!", "error");
@@ -918,19 +924,7 @@
                                     } else {
                                         swal.close()
                                         $("#editpgw-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
-                                        $.each(response.messages, function(key, value) {
-                                            var element = $('#' + key);
-                                            element.closest('div.form-group')
-                                                .find('.text-danger')
-                                                .remove();
-                                            if (element.parent('.input-group').length) {
-                                                element.parent().after(value);
-                                            } else if (element.parent('.form-row').length) {
-                                                element.parent().after(value);
-                                            } else {
-                                                element.after(value);
-                                            }
-                                        });
+                                        $("#info-edit").html(response.messages);
                                     }
                                 },
                                 error: function() {

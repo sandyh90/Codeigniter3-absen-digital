@@ -9,7 +9,8 @@
                     <div class="form-group row">
                         <label for="nama_pegawai" class="col-sm-4 col-form-label">Nama Pegawai</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" placeholder="Kosongkan bagian ini jika ingin menampilkan semua">
+                            <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" placeholder="Nama Pegawai">
+                            <small class="muted">*Kosongkan bagian ini jika ingin menampilkan semua</small>
                         </div>
                     </div>
                     <div class="form-group row">

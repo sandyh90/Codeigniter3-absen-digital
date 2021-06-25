@@ -57,11 +57,11 @@ class M_Front extends CI_Model
                     'nama_pegawai' => $this->get_datasess['nama_lengkap'],
                     'kode_pegawai' => $this->get_datasess['kode_pegawai'],
                     'jam_masuk' => $clocknow,
-                    'id_absen' => random_string('numeric', 5),
+                    'id_absen' => uniqid('absen_'),
                     'tgl_absen' => $today,
                     'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
                     'status_pegawai' => 1,
-                    'maps_absen' => htmlspecialchars($this->input->post('maps_absen', true))
+                    'maps_absen' => $appsettings['maps_use'] == TRUE ? htmlspecialchars($this->input->post('maps_absen', true)) : 'No Location'
                 ];
                 $this->db->insert('db_absensi', $data);
             }
@@ -77,11 +77,11 @@ class M_Front extends CI_Model
                     'nama_pegawai' => $this->get_datasess['nama_lengkap'],
                     'kode_pegawai' => $this->get_datasess['kode_pegawai'],
                     'jam_masuk' => $clocknow,
-                    'id_absen' => random_string('numeric', 5),
+                    'id_absen' => uniqid('absen_'),
                     'tgl_absen' => $today,
                     'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
                     'status_pegawai' => 2,
-                    'maps_absen' => htmlspecialchars($this->input->post('maps_absen', true))
+                    'maps_absen' => $appsettings['maps_use'] == TRUE ? htmlspecialchars($this->input->post('maps_absen', true)) : 'No Location'
                 ];
                 $this->db->insert('db_absensi', $data);
             }
@@ -90,11 +90,11 @@ class M_Front extends CI_Model
                 'nama_pegawai' => $this->get_datasess['nama_lengkap'],
                 'kode_pegawai' => $this->get_datasess['kode_pegawai'],
                 'jam_masuk' => $clocknow,
-                'id_absen' => random_string('numeric', 5),
+                'id_absen' => uniqid('absen_'),
                 'tgl_absen' => $today,
                 'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
                 'status_pegawai' => 2,
-                'maps_absen' => htmlspecialchars($this->input->post('maps_absen', true))
+                'maps_absen' => $appsettings['maps_use'] == TRUE ? htmlspecialchars($this->input->post('maps_absen', true)) : 'No Location'
             ];
             $this->db->insert('db_absensi', $data);
         }

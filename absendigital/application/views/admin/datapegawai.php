@@ -81,12 +81,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="kode_pegawai" class="col-sm-4 col-form-label">Kode Pegawai</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="kode_pegawai" name="kode_pegawai" title="Kode telah otomatis digenerate secara acak" readonly>
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label for="jabatan_pegawai" class="col-sm-4 col-form-label">Jabatan</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="jabatan_pegawai" name="jabatan_pegawai">
@@ -113,7 +107,7 @@
                     <label for="umur_pegawai" class="col-sm-4 col-form-label">Umur</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="umur_pegawai" name="umur_pegawai">
+                            <input type="text" class="form-control" id="umur_pegawai" name="umur_pegawai" maxlength="2">
                             <div class="input-group-append">
                                 <div class="input-group-text">Tahun</div>
                             </div>

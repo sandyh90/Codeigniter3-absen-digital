@@ -52,7 +52,7 @@ class M_Admin extends CI_Model
     {
         if ($typesend == 'addpgw') {
 
-            $kd_pegawai = htmlspecialchars($this->input->post('kode_pegawai'));
+            $kd_pegawai = random_string('numeric', 15);
 
             if (empty(htmlspecialchars($this->input->post('npwp_pegawai')))) {
                 $rownpwp = 'Tidak Ada';
@@ -66,19 +66,19 @@ class M_Admin extends CI_Model
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
                 $config['max_size']      = '2048';
                 $config['encrypt_name'] = TRUE;
-                $config['upload_path'] = '../public/storage/profile/';
+                $config['upload_path'] = $this->config->item('SAVE_FOLDER_PROFILE');
 
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('foto_pegawai')) {
                     $gbr = $this->upload->data();
                     $config['image_library'] = 'gd2';
-                    $config['source_image'] = base_url('storage/profile/') . $gbr['file_name'];
+                    $config['source_image'] = $this->config->item('SAVE_FOLDER_PROFILE') . $gbr['file_name'];
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['width'] = 300;
                     $config['height'] = 300;
-                    $config['new_image'] = base_url('storage/profile/') . $gbr['file_name'];
+                    $config['new_image'] = $this->config->item('SAVE_FOLDER_PROFILE') . $gbr['file_name'];
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
 
@@ -95,9 +95,9 @@ class M_Admin extends CI_Model
                 $this->load->library('ciqrcode'); //pemanggilan library QR CODE
 
                 $config['cacheable']    = true; //boolean, the default is true
-                $config['cachedir']     = base_url('storage/sys/cache/'); //string, the default is application/cache/
-                $config['errorlog']     = base_url('storage/sys/log/'); //string, the default is application/logs/
-                $config['imagedir']     = base_url('storage/qrcode_pegawai/'); //direktori penyimpanan qr code
+                $config['cachedir']     = $this->config->item('MISC_SAVE_FOLDER') . 'sys/cache/'; //string, the default is application/cache/
+                $config['errorlog']     = $this->config->item('MISC_SAVE_FOLDER') . 'sys/log/'; //string, the default is application/logs/
+                $config['imagedir']     = $this->config->item('SAVE_FOLDER_QRCODE'); //direktori penyimpanan qr code
                 $config['quality']      = true; //boolean, the default is true
                 $config['size']         = '1024'; //interger, the default is 1024
                 $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
@@ -109,7 +109,7 @@ class M_Admin extends CI_Model
                 $params['data'] = $kd_pegawai; //data yang akan di jadikan QR CODE
                 $params['level'] = 'H'; //H=High
                 $params['size'] = 10;
-                $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE
+                $params['savename'] = $config['imagedir'] . $image_name; //simpan image QR CODE
                 $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
                 $senddata = [
                     'qr_code_image' => $image_name,
@@ -129,7 +129,7 @@ class M_Admin extends CI_Model
                 'password' => password_hash($this->input->post('password_pegawai'), PASSWORD_DEFAULT),
                 'kode_pegawai' => $kd_pegawai,
                 'jabatan' => htmlspecialchars($this->input->post('jabatan_pegawai')),
-                'instansi' => htmlspecialchars($this->input->post('instansi_pegawai')),
+                'instansi' => $this->appsetting['nama_instansi'],
                 'npwp' => $rownpwp,
                 'umur' => htmlspecialchars($this->input->post('umur_pegawai')),
                 'tempat_lahir' => htmlspecialchars($this->input->post('tempat_lahir_pegawai')),
@@ -146,11 +146,11 @@ class M_Admin extends CI_Model
 
             $old_image = $query['image'];
             if ($old_image != 'default-profile.png') {
-                unlink(FCPATH . 'storage/profile/' . $old_image);
+                unlink($this->config->item('SAVE_FOLDER_PROFILE') . $old_image);
             }
             $old_qrcode = $query['qr_code_image'];
             if ($old_qrcode != 'no-qrcode.png') {
-                unlink(FCPATH . 'storage/qrcode_pegawai/' . $old_qrcode);
+                unlink($this->config->item('SAVE_FOLDER_QRCODE') . $old_qrcode);
             }
             $this->db->delete('user', ['id_pegawai' => htmlspecialchars($this->input->post('pgw_id', true))]);
         } elseif ($typesend == 'actpgw') {
@@ -158,8 +158,9 @@ class M_Admin extends CI_Model
             $this->db->where('id_pegawai', htmlspecialchars($this->input->post('pgw_id', true)));
             $this->db->update('user');
         } elseif ($typesend == 'edtpgwalt') {
-            $kd_pegawai = htmlspecialchars($this->input->post('kode_pegawai_edit', true));
-            $queryimage = $this->db->get_where('user', ['id_pegawai' => htmlspecialchars($this->input->post('id_pegawai_edit', true))])->row_array();
+            $query_user = $this->db->get_where('user', ['id_pegawai' => htmlspecialchars($this->input->post('id_pegawai_edit', true))])->row_array();
+            $kd_pegawai = $query_user['kode_pegawai'];
+            $queryimage = $query_user;
             if (empty(htmlspecialchars($this->input->post('npwp_pegawai_edit')))) {
                 $rownpwp = 'Tidak Ada';
             } else {
@@ -173,7 +174,7 @@ class M_Admin extends CI_Model
             if (empty($this->input->post('barcode_pegawai_edit'))) {
                 $old_qrcode = $queryimage['qr_code_image'];
                 if ($old_qrcode != 'no-qrcode.png') {
-                    unlink(FCPATH . 'storage/qrcode_pegawai/' . $old_qrcode);
+                    unlink($this->config->item('SAVE_FOLDER_QRCODE') . $old_qrcode);
                 }
                 $senddata = [
                     'qr_code_image' => 'no-qrcode.png',
@@ -184,9 +185,9 @@ class M_Admin extends CI_Model
                 $this->load->library('ciqrcode'); //pemanggilan library QR CODE
 
                 $config['cacheable']    = true; //boolean, the default is true
-                $config['cachedir']     = '../public/storage/sys/cache/'; //string, the default is application/cache/
-                $config['errorlog']     = '../public/storage/sys/log/'; //string, the default is application/logs/
-                $config['imagedir']     = '../public/storage/qrcode_pegawai/'; //direktori penyimpanan qr code
+                $config['cachedir']     = $this->config->item('MISC_SAVE_FOLDER') . 'sys/cache/'; //string, the default is application/cache/
+                $config['errorlog']     = $this->config->item('MISC_SAVE_FOLDER') . 'sys/log/'; //string, the default is application/logs/
+                $config['imagedir']     = $this->config->item('SAVE_FOLDER_QRCODE'); //direktori penyimpanan qr code
                 $config['quality']      = true; //boolean, the default is true
                 $config['size']         = '1024'; //interger, the default is 1024
                 $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
@@ -198,7 +199,7 @@ class M_Admin extends CI_Model
                 $params['data'] = $kd_pegawai; //data yang akan di jadikan QR CODE
                 $params['level'] = 'H'; //H=High
                 $params['size'] = 10;
-                $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
+                $params['savename'] = $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
                 $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
                 $senddata = [
                     'qr_code_image' => $image_name,
@@ -213,25 +214,25 @@ class M_Admin extends CI_Model
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
                 $config['max_size']      = '2048';
                 $config['encrypt_name'] = TRUE;
-                $config['upload_path'] = '../public/storage/profile/';
+                $config['upload_path'] = $this->config->item('SAVE_FOLDER_PROFILE');
 
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('foto_pegawai_edit')) {
                     $gbr = $this->upload->data();
                     $config['image_library'] = 'gd2';
-                    $config['source_image'] = '../public/storage/profile/' . $gbr['file_name'];
+                    $config['source_image'] = $this->config->item('SAVE_FOLDER_PROFILE') . $gbr['file_name'];
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['width'] = 300;
                     $config['height'] = 300;
-                    $config['new_image'] = '../public/storage/profile/' . $gbr['file_name'];
+                    $config['new_image'] = $this->config->item('SAVE_FOLDER_PROFILE') . $gbr['file_name'];
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
 
                     $old_image = $queryimage['image'];
                     if ($old_image != 'default.png') {
-                        unlink(FCPATH . 'storage/profile/' . $old_image);
+                        unlink($this->config->item('SAVE_FOLDER_PROFILE') . $old_image);
                     }
                     $new_image = $this->upload->data('file_name');
                     $this->db->set('image', $new_image);
@@ -244,7 +245,7 @@ class M_Admin extends CI_Model
                 'nama_lengkap' => htmlspecialchars($this->input->post('nama_pegawai_edit')),
                 'username' => htmlspecialchars($this->input->post('username_pegawai_edit')),
                 'jabatan' => htmlspecialchars($this->input->post('jabatan_pegawai_edit')),
-                'instansi' => htmlspecialchars($this->input->post('instansi_pegawai_edit')),
+                'instansi' => $this->appsetting['nama_instansi'],
                 'npwp' => $rownpwp,
                 'umur' => htmlspecialchars($this->input->post('umur_pegawai_edit')),
                 'tempat_lahir' => htmlspecialchars($this->input->post('tempat_lahir_pegawai_edit')),
