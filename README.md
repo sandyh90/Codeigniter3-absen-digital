@@ -14,7 +14,7 @@ Abandoned Date: -
 ## Fitur
 
 Fitur Yang Tersedia Pada Aplikasi Ini:
-- ~~Absen Scan Barcode (Instant Absen [Beta])~~ [Removed Temporary]
+- ~~Absen Scan Barcode (Instant Absen [Beta])~~ [Removed]
 - Remember Me
 - Custom Setting Aplikasi
 - Informasi Pada Saat Absen
