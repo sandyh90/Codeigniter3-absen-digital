@@ -203,4 +203,7 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Penambahan file custom config untuk pengaturan aplikasi "**application/config/aplikasi_config.php**"
 - Perbaikan beberapa bug yang telah ditemukan
 - Kode pegawai pada input form tambah pegawai dihapus dan digantikan dengan generate kode pegawai oleh sistem
-- Perubahan "**id_absen**" dengan tipedata varchar yang sebelumnya int pada ekspor file db 
+- Perubahan "**id_absen**" dengan tipedata varchar yang sebelumnya int pada ekspor file db
+
+### 6-26-2021
+- Perbaikan bug saat menampilkan map pada modal
