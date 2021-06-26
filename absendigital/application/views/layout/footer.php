@@ -34,6 +34,12 @@
             orientation: "bottom auto"
         });
 
+        $('body').on('shown.bs.modal', function(e) {
+            setTimeout(function() {
+                map.invalidateSize()
+            }, 500);
+        })
+
         $('#setting-list a').on('click', function(e) {
             e.preventDefault()
             $(this).tab('show')
