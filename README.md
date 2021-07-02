@@ -3,13 +3,13 @@
 Absen digital menggunakan Codeigniter 3 ini merupakan sebuah project saya yang telah dibuat pada saat saya memiliki waktu luang mungkin aplikasi ini tidak 100% complete dan masih ada
 terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki celah tersebut sebisa mungkin.
 
-## ABANDONED PROJECT [Coming Soon]
+# ABANDONED PROJECT
 
 Kemungkinan untuk update berikutnya atau suatu saat nanti proyek ini akan saya tiadakan dan tidak saya update atau ubah lagi berhubungan
 karena komponen pada framework ini sudah terlalu tua yang mungkin tidak support untuk komponen lain dengan versi yang baru dan juga rentan
 terhadap cyber attack dikarenakan keamanan di framework ini sudah tua, untuk tanggal peniadaan aplikasi proyek ini sudah tertera dibawah ini.
 
-Abandoned Date: -
+Abandoned Date: 20 Juli 2021
 
 ## Fitur
 
