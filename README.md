@@ -9,7 +9,7 @@ Kemungkinan untuk update berikutnya atau suatu saat nanti proyek ini akan saya t
 karena komponen pada framework ini sudah terlalu tua yang mungkin tidak support untuk komponen lain dengan versi yang baru dan juga rentan
 terhadap cyber attack dikarenakan keamanan di framework ini sudah tua, untuk tanggal peniadaan aplikasi proyek ini sudah tertera dibawah ini.
 
-Abandoned Date: 20 Juli 2021
+Abandoned Date: 20 Juli 2021 (Jika ada update selanjutnya itu adalah update terakhir dari project ini)
 
 ## Fitur
 
