@@ -13,7 +13,7 @@ class M_Front extends CI_Model
         $this->get_datasess = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
         $this->appsetting = $this->db->get_where('db_setting', ['status_setting' => 1])->row_array();
-		$timezone_all = $this->get_datasetupapp;
+	$timezone_all = $this->get_datasetupapp;
         date_default_timezone_set($timezone_all['timezone']);
     }
 
