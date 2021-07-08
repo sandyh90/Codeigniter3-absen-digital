@@ -43,6 +43,7 @@ class Ajax extends CI_Controller
         $clocknow = date("H:i:s");
         $today = $this->get_today_date;
         $appsettings = $this->appsetting;
+        $is_pulang = $this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array();
         if (strtotime($clocknow) <= strtotime($appsettings['absen_mulai'])) {
             $reponse = [
                 'csrfName' => $this->security->get_csrf_token_name(),
@@ -56,6 +57,13 @@ class Ajax extends CI_Controller
                 'csrfHash' => $this->security->get_csrf_hash(),
                 'success' => false,
                 'msgabsen' => '<div class="alert alert-danger text-center" role="alert">Belum Waktunya Absen Pulang</div>'
+            ];
+        } elseif (strtotime($clocknow) >= strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) >= strtotime($appsettings['absen_pulang']) && !empty($is_pulang['jam_pulang'])) {
+            $reponse = [
+                'csrfName' => $this->security->get_csrf_token_name(),
+                'csrfHash' => $this->security->get_csrf_hash(),
+                'success' => false,
+                'msgabsen' => '<div class="alert alert-danger text-center" role="alert">Anda Sudah Absen Pulang</div>'
             ];
         } else {
             $this->M_Front->do_absen();
