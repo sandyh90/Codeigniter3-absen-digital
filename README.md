@@ -199,3 +199,6 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 
 ### 6-26-2021
 - Perbaikan bug saat menampilkan map pada modal
+
+### 7-8-2021
+- Penambahan fitur mencegah user untuk absen kembali ketika sudah absen pulang
