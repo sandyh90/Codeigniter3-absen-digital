@@ -7,7 +7,7 @@ terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki ce
 
 Kemungkinan untuk update berikutnya atau suatu saat nanti proyek ini akan minim mendapatkan update atau bahkan tidak saya update atau diubah lagi berhubungan
 karena komponen pada framework ini sudah terlalu tua yang mungkin tidak support untuk komponen lain dengan versi yang baru dan juga rentan
-terhadap cyber attack dikarenakan keamanan di framework ini sudah tua, untuk tanggal peniadaan aplikasi proyek ini sudah tertera dibawah ini.
+terhadap cyber attack dikarenakan keamanan di framework ini sudah usang.
 
 New Version: [Under Progress] (Paid)
 
