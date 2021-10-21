@@ -210,3 +210,7 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 
 ### 7-8-2021
 - Penambahan fitur mencegah user untuk absen kembali ketika sudah absen pulang
+
+### 10-21-2021
+- Perubahan pada **id_absen** dengan auto increment dan tipedata dari varchar ke bigInt pada ekspor sebelumnya
+- Penambahan kolom **kode_absen** sebagai kode refrensi absensi

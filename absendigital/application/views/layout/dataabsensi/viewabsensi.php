@@ -3,6 +3,8 @@
         <dl class="row">
             <dt class="col-sm-5">Nama Pegawai:</dt>
             <dd class="col-sm-7"><?= $dataabsensi['nama_pegawai'] ?></dd>
+            <dt class="col-sm-5">Kode Absensi:</dt>
+            <dd class="col-sm-7"><?= $dataabsensi['kode_absen'] ?></dd>
             <dt class="col-sm-5">Tanggal Absen:</dt>
             <dd class="col-sm-7"><?= $dataabsensi['tgl_absen'] ?></dd>
             <dt class="col-sm-5">Waktu Datang:</dt>
