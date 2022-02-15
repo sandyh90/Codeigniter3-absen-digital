@@ -9,7 +9,9 @@ Kemungkinan untuk update berikutnya atau suatu saat nanti proyek ini akan minim 
 karena komponen pada framework ini sudah terlalu tua yang mungkin tidak support untuk komponen lain dengan versi yang baru dan juga rentan
 terhadap cyber attack dikarenakan keamanan di framework ini sudah usang.
 
-<h3>New Version: https://trakteer.id/pickedianz/showcase/absensi-online-dan-rekap-data-tugas-laravel-8-BZYKF (Paid)</h3>
+## New Version
+- [Paid Version] https://trakteer.id/pickedianz/showcase/absensi-online-dan-rekap-data-tugas-laravel-8-BZYKF
+- [Free Version] Coming Soon
 
 ## Fitur
 
