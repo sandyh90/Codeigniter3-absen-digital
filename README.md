@@ -1,6 +1,6 @@
 <h1 align="center">Absen Digital Codeigniter 3</h1>
  
-Absen digital menggunakan Codeigniter 3 ini merupakan sebuah project saya yang telah buat pada saat saya memiliki waktu luang mungkin aplikasi ini tidak 100% complete dan masih ada
+Absen digital menggunakan Codeigniter 3 ini merupakan sebuah project saya yang telah buat pada saat saya memiliki waktu luang ,mungkin aplikasi ini tidak 100% complete dan masih ada
 terjadinya bug pada aplikasi ini tetapi saya tetap berusaha untuk memperbaiki celah tersebut sebisa mungkin.
 
 ## ⚠️ LEGACY PROJECT [Deprecated]
