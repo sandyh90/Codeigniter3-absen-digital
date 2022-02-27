@@ -11,7 +11,6 @@ terhadap cyber attack dikarenakan keamanan di framework ini sudah usang.
 
 ## New Version
 - [Paid Version] https://trakteer.id/pickedianz/showcase/absensi-online-dan-rekap-data-tugas-laravel-8-BZYKF
-- [Free Version] Coming Soon
 
 ## Fitur
 
