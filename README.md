@@ -213,4 +213,4 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Penambahan kolom **kode_absen** sebagai kode refrensi absensi
 
 ### 05-01-2022
-- EOL (End Of Life) peniadaan update pada aplikasi codeigniter 3
+- EOL (End Of Life) peniadaan update pada aplikasi absensi online codeigniter 3
