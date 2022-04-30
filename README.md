@@ -57,10 +57,6 @@ Silakan ubah beberapa config ini saja untuk disesuaikan dengan pengaturan databa
 ![Login Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2021-02-03%20Login%20Absensi.png)
 ![Front Page](https://github.com/sandyh90/Codeigniter3-absen-digital/blob/master/images-demo/Screenshot_2020-09-12%20Absensi%20Online.png)
 
-Ingin mencoba aplikasi web ini silakan kunjungi
-
-[Demo Web](http://demo.nerosky.rf.gd/absendigitalci3/)
-
 ## Setting Environment
 
 Sebelum memakai aplikasi ini saya sarankan setelah anda telah mengkonfigurasi semuanya pada aplikasi dan berajalan normal dimohon untuk
@@ -167,11 +163,11 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 ```
 
 ## Change Log
-### 9-13-2020
+### 09-13-2020
 - Export dengan metode excel
 - Mengubah bahasa pada datepicker bagian bulan
 
-### 9-15-2020
+### 09-15-2020
 - Penambahan fitur absensi dengan mengunakan lokasi
 - Perbaikan beberapa bug yang telah ditemukan
 
@@ -186,7 +182,7 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Penambahan fitur untuk keterangan absen pada saat absen
 - Perbaikan lokasi tidak terdeteksi pada fitur instant absen
 
-### 2-3-2021
+### 02-03-2021
 - Scan barcode pada fitur absensi dihapuskan karena adanya kebijakan baru tentang kebijakan keamanan pada web browser
 - Perbaikan pada folder view dikarenakan terjadinya error 404 not found pada saat hosting
 - Perubahan layout pada halaman login
@@ -194,7 +190,7 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Perbaikan pada list user jika hanya ada 1 user administrator tidak bisa dihapus [Tahap Percobaan]
 - Perbaikan pada fungsi absen
 
-### 6-25-2021
+### 06-25-2021
 - Perbaikan bug pada absensi
 - Perbaikan validasi pada form yang dimana admin harus assign role kepada user tidak boleh kosong
 - Perbaikan input pengisian npwp pada form validasi harus menggunakan angka
@@ -206,12 +202,15 @@ $config['composer_autoload'] = 'vendor/autoload.php'; <-- Sebelumnya ../vendor/a
 - Kode pegawai pada input form tambah pegawai dihapus dan digantikan dengan generate kode pegawai oleh sistem
 - Perubahan "**id_absen**" dengan tipedata varchar yang sebelumnya int pada ekspor file db
 
-### 6-26-2021
+### 06-26-2021
 - Perbaikan bug saat menampilkan map pada modal
 
-### 7-8-2021
+### 07-08-2021
 - Penambahan fitur mencegah user untuk absen kembali ketika sudah absen pulang
 
 ### 10-21-2021
 - Perubahan pada **id_absen** dengan auto increment dan tipedata dari varchar ke bigInt pada ekspor sebelumnya
 - Penambahan kolom **kode_absen** sebagai kode refrensi absensi
+
+### 05-01-2022
+- EOL (End Of Life) peniadaan update pada aplikasi codeigniter 3
